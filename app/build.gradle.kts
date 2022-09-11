@@ -60,14 +60,14 @@ android {
     }
 }
 
+val vActivity: String by rootProject.extra
 val vAndroidX: String by rootProject.extra
 val vCompose: String by rootProject.extra
-val vMaterial3: String by rootProject.extra
-val vLifecycle: String by rootProject.extra
-val vActivity: String by rootProject.extra
 val vEspresso: String by rootProject.extra
 val vJunit: String by rootProject.extra
 val vJunitExt: String by rootProject.extra
+val vLifecycle: String by rootProject.extra
+val vMaterial3: String by rootProject.extra
 val vTimber: String by rootProject.extra
 
 dependencies {
