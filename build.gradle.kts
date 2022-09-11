@@ -12,6 +12,7 @@ buildscript {
     val vEspresso by extra("3.4.0")
     val vJunit by extra("4.13.2")
     val vJunitExt by extra("1.1.3")
+    val vKoin by extra("3.2.0")
     val vLifecycle by extra("2.5.1")
     val vMaterial3 by extra("1.0.0-beta02")
     val vTimber by extra("5.0.1")

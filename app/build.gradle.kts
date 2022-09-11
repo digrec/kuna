@@ -66,6 +66,7 @@ val vCompose: String by rootProject.extra
 val vEspresso: String by rootProject.extra
 val vJunit: String by rootProject.extra
 val vJunitExt: String by rootProject.extra
+val vKoin: String by rootProject.extra
 val vLifecycle: String by rootProject.extra
 val vMaterial3: String by rootProject.extra
 val vTimber: String by rootProject.extra
@@ -79,6 +80,10 @@ dependencies {
     implementation("androidx.compose.material3:material3:$vMaterial3")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$vLifecycle")
     implementation("androidx.activity:activity-compose:$vActivity")
+
+    // Koin DI
+    implementation("io.insert-koin:koin-android:$vKoin")
+    implementation("io.insert-koin:koin-androidx-compose:$vKoin")
 
     // Timber
     implementation("com.jakewharton.timber:timber:$vTimber")
