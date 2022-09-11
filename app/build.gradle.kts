@@ -68,6 +68,7 @@ val vActivity: String by rootProject.extra
 val vEspresso: String by rootProject.extra
 val vJunit: String by rootProject.extra
 val vJunitExt: String by rootProject.extra
+val vTimber: String by rootProject.extra
 
 dependencies {
 
@@ -78,6 +79,9 @@ dependencies {
     implementation("androidx.compose.material3:material3:$vMaterial3")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$vLifecycle")
     implementation("androidx.activity:activity-compose:$vActivity")
+
+    // Timber
+    implementation("com.jakewharton.timber:timber:$vTimber")
 
     // JUnit
     testImplementation("junit:junit:$vJunit")

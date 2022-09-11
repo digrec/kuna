@@ -14,6 +14,7 @@ buildscript {
     val vEspresso by extra("3.4.0")
     val vJunit by extra("4.13.2")
     val vJunitExt by extra("1.1.3")
+    val vTimber by extra("5.0.1")
 }
 
 plugins {
