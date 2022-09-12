@@ -1,4 +1,4 @@
-package com.digrec.kuna
+package com.digrec.kuna.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
