@@ -9,6 +9,7 @@ val vTargetSdk: Int by rootProject.extra
 val vComposeCompiler: String by rootProject.extra
 
 android {
+    namespace = "com.digrec.kuna"
     compileSdk = vCompileSdk
 
     defaultConfig {
