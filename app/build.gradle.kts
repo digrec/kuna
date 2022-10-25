@@ -63,24 +63,31 @@ android {
 
 val vActivity: String by rootProject.extra
 val vAndroidX: String by rootProject.extra
-val vCompose: String by rootProject.extra
+val vComposeBom: String by rootProject.extra
 val vEspresso: String by rootProject.extra
 val vJunit: String by rootProject.extra
 val vJunitExt: String by rootProject.extra
 val vKoin: String by rootProject.extra
 val vLifecycle: String by rootProject.extra
-val vMaterial3: String by rootProject.extra
 val vTimber: String by rootProject.extra
 
 dependencies {
 
     // AndroidX
     implementation("androidx.core:core-ktx:$vAndroidX")
-    implementation("androidx.compose.ui:ui:$vCompose")
-    implementation("androidx.compose.ui:ui-tooling-preview:$vCompose")
-    implementation("androidx.compose.material3:material3:$vMaterial3")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$vLifecycle")
     implementation("androidx.activity:activity-compose:$vActivity")
+
+    // Compose
+    val composeBom = platform("androidx.compose:compose-bom:$vComposeBom")
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.material3:material3")
+
+    // Compose Preview
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
 
     // Koin DI
     implementation("io.insert-koin:koin-android:$vKoin")
@@ -89,13 +96,12 @@ dependencies {
     // Timber
     implementation("com.jakewharton.timber:timber:$vTimber")
 
-    // JUnit
+    // Unit Tests
     testImplementation("junit:junit:$vJunit")
     androidTestImplementation("androidx.test.ext:junit:$vJunitExt")
 
-    // Espresso
+    // UI Tests
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
     androidTestImplementation("androidx.test.espresso:espresso-core:$vEspresso")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$vCompose")
-    debugImplementation("androidx.compose.ui:ui-tooling:$vCompose")
-    debugImplementation("androidx.compose.ui:ui-test-manifest:$vCompose")
 }
