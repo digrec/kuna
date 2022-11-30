@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Kuna</string>
+    <string name="app_settings">Settings</string>
 </resources>
