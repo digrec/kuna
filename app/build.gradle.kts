@@ -69,6 +69,7 @@ val vJunit: String by rootProject.extra
 val vJunitExt: String by rootProject.extra
 val vKoin: String by rootProject.extra
 val vLifecycle: String by rootProject.extra
+val vNavigation: String by rootProject.extra
 val vTimber: String by rootProject.extra
 
 dependencies {
@@ -77,6 +78,7 @@ dependencies {
     implementation("androidx.core:core-ktx:$vAndroidX")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$vLifecycle")
     implementation("androidx.activity:activity-compose:$vActivity")
+    implementation("androidx.navigation:navigation-compose:$vNavigation")
 
     // Compose
     val composeBom = platform("androidx.compose:compose-bom:$vComposeBom")
