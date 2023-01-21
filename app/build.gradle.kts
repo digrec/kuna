@@ -68,6 +68,7 @@ val vEspresso: String by rootProject.extra
 val vJunit: String by rootProject.extra
 val vJunitExt: String by rootProject.extra
 val vKoin: String by rootProject.extra
+val vKoinCompose: String by rootProject.extra
 val vLifecycle: String by rootProject.extra
 val vNavigation: String by rootProject.extra
 val vTimber: String by rootProject.extra
@@ -93,7 +94,7 @@ dependencies {
 
     // Koin DI
     implementation("io.insert-koin:koin-android:$vKoin")
-    implementation("io.insert-koin:koin-androidx-compose:$vKoin")
+    implementation("io.insert-koin:koin-androidx-compose:$vKoinCompose")
 
     // Timber
     implementation("com.jakewharton.timber:timber:$vTimber")
