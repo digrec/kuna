@@ -7,8 +7,8 @@ buildscript {
     // common dependency versions
     val vActivity by extra("1.6.1")
     val vAndroidX by extra("1.9.0")
-    val vComposeBom by extra("2022.12.00")
-    val vComposeCompiler by extra("1.3.2")
+    val vComposeBom by extra("2023.01.00")
+    val vComposeCompiler by extra("1.4.0")
     val vEspresso by extra("3.5.0")
     val vJunit by extra("4.13.2")
     val vJunitExt by extra("1.1.4")
