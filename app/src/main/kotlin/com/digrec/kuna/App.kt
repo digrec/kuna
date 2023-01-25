@@ -22,6 +22,8 @@ class App : Application() {
             modules(
                 Modules.appModule,
                 Modules.viewModelModule,
+                Modules.repositoryModule,
+                Modules.useCaseModule,
             )
         }
 
