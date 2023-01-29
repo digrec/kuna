@@ -1,4 +1,4 @@
-package com.digrec.kuna.ui.theme
+package com.digrec.kuna.core.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

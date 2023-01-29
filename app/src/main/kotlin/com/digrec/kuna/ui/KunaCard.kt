@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.digrec.kuna.R
 import com.digrec.kuna.core.domain.model.Kuna
 import com.digrec.kuna.core.domain.model.previewKunaList
-import com.digrec.kuna.ui.theme.KunaTheme
+import com.digrec.kuna.core.ui.theme.KunaTheme
 
 
 /**

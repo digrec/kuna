@@ -1,4 +1,4 @@
-package com.digrec.kuna.ui.theme
+package com.digrec.kuna.core.ui.theme
 
 import android.app.Activity
 import android.os.Build

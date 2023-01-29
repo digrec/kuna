@@ -14,7 +14,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.digrec.kuna.R
-import com.digrec.kuna.ui.theme.KunaTheme
+import com.digrec.kuna.core.ui.theme.KunaTheme
 import org.koin.androidx.compose.getViewModel
 
 

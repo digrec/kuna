@@ -7,11 +7,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.digrec.kuna.core.ui.component.KunaBackground
+import com.digrec.kuna.core.ui.theme.KunaTheme
 import com.digrec.kuna.feature.kunalist.kunaListRoute
 import com.digrec.kuna.feature.kunalist.kunaListScreen
 import com.digrec.kuna.feature.settings.navigateToSettings
 import com.digrec.kuna.feature.settings.settingsScreen
-import com.digrec.kuna.ui.theme.KunaTheme
 
 
 /**
