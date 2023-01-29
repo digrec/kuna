@@ -1,4 +1,4 @@
-package com.digrec.kuna.core.ui.kunalist
+package com.digrec.kuna.feature.kunalist
 
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.items

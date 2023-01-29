@@ -1,4 +1,4 @@
-package com.digrec.kuna.core.ui.kunalist
+package com.digrec.kuna.feature.kunalist
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
