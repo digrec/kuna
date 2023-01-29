@@ -1,4 +1,4 @@
-package com.digrec.kuna.core.ui.kunaList
+package com.digrec.kuna.core.ui.kunalist
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
