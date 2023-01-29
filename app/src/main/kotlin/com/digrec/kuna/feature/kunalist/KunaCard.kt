@@ -1,4 +1,4 @@
-package com.digrec.kuna.ui
+package com.digrec.kuna.feature.kunalist
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape

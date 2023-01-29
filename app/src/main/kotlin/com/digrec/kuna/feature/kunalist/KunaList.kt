@@ -2,7 +2,6 @@ package com.digrec.kuna.feature.kunalist
 
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.items
-import com.digrec.kuna.ui.KunaCard
 import timber.log.Timber
 
 

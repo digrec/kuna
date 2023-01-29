@@ -1,4 +1,4 @@
-package com.digrec.kuna.ui
+package com.digrec.kuna.feature.kunalist
 
 import androidx.compose.material3.FilledIconToggleButton
 import androidx.compose.material3.IconButtonDefaults
