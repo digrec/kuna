@@ -1,7 +1,8 @@
-package com.digrec.kuna.feature.kunalist
+package com.digrec.kuna.feature.kunalist.ui.component
 
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.items
+import com.digrec.kuna.feature.kunalist.ui.ListUiState
 import timber.log.Timber
 
 

@@ -1,4 +1,4 @@
-package com.digrec.kuna.feature.kunalist
+package com.digrec.kuna.feature.kunalist.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

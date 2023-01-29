@@ -1,4 +1,4 @@
-package com.digrec.kuna.feature.kunalist
+package com.digrec.kuna.feature.kunalist.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -20,6 +20,7 @@ import com.digrec.kuna.R
 import com.digrec.kuna.core.domain.model.Kuna
 import com.digrec.kuna.core.domain.model.previewKunaList
 import com.digrec.kuna.core.ui.theme.KunaTheme
+import com.digrec.kuna.feature.kunalist.ui.component.kunaList
 import org.koin.androidx.compose.getViewModel
 
 
