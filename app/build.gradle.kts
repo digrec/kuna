@@ -77,8 +77,9 @@ dependencies {
 
     // AndroidX
     implementation("androidx.core:core-ktx:$vAndroidX")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$vLifecycle")
     implementation("androidx.activity:activity-compose:$vActivity")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$vLifecycle")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:$vLifecycle")
     implementation("androidx.navigation:navigation-compose:$vNavigation")
 
     // Compose
@@ -87,7 +88,6 @@ dependencies {
     androidTestImplementation(composeBom)
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.material3:material3")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha04")
 
     // Compose Preview
     implementation("androidx.compose.ui:ui-tooling-preview")
