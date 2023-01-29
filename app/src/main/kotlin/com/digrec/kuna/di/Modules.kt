@@ -4,8 +4,8 @@ import com.digrec.kuna.BuildConfig
 import com.digrec.kuna.core.data.repository.KunaRepositoryImpl
 import com.digrec.kuna.core.domain.GetAllKunaUseCase
 import com.digrec.kuna.core.domain.repository.KunaRepository
-import com.digrec.kuna.core.ui.settings.SettingsViewModel
 import com.digrec.kuna.feature.kunalist.KunaListViewModel
+import com.digrec.kuna.feature.settings.SettingsViewModel
 import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

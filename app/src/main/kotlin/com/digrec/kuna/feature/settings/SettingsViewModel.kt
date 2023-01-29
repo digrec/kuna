@@ -1,4 +1,4 @@
-package com.digrec.kuna.core.ui.settings
+package com.digrec.kuna.feature.settings
 
 import androidx.lifecycle.ViewModel
 
