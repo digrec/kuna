@@ -1,5 +1,6 @@
 package com.digrec.kuna.feature.kunalist.ui.component
 
+import android.icu.text.NumberFormat
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -62,7 +63,14 @@ fun KunaCard(
                         CheckmarkButton(isChecked, onToggleCheckmark)
                     }
                     Spacer(modifier = Modifier.height(12.dp))
-                    KunaShortDescription(kuna.description)
+                    Row {
+                        KunaShortDescription(
+                            kuna.description,
+                            modifier = Modifier.fillMaxWidth((.8f))
+                        )
+                        Spacer(modifier = Modifier.weight(1f))
+                        KunaItemsIssued(itemsIssued = kuna.itemsIssued)
+                    }
                 }
             }
         }
@@ -111,10 +119,24 @@ fun CheckmarkButton(
 @Composable
 fun KunaShortDescription(
     shortDescription: String,
+    modifier: Modifier = Modifier,
 ) {
     Text(
         text = shortDescription,
         style = MaterialTheme.typography.bodyLarge,
+        modifier = modifier,
+    )
+}
+
+@Composable
+fun KunaItemsIssued(
+    itemsIssued: Int,
+    modifier: Modifier = Modifier,
+) {
+    Text(
+        text = NumberFormat.getInstance().format(itemsIssued),
+        style = MaterialTheme.typography.bodyLarge,
+        modifier = modifier,
     )
 }
 
