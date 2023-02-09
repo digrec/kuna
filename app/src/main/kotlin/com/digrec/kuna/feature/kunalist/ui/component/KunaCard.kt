@@ -17,6 +17,9 @@ import com.digrec.kuna.R
 import com.digrec.kuna.core.domain.model.Kuna
 import com.digrec.kuna.core.domain.model.previewKunaList
 import com.digrec.kuna.core.ui.theme.KunaTheme
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 
 /**
@@ -64,8 +67,8 @@ fun KunaCard(
                     }
                     Spacer(modifier = Modifier.height(12.dp))
                     Row {
-                        KunaShortDescription(
-                            kuna.description,
+                        KunaReleaseDate(
+                            kuna.releaseDate,
                             modifier = Modifier.fillMaxWidth((.8f))
                         )
                         Spacer(modifier = Modifier.weight(1f))
@@ -117,12 +120,12 @@ fun CheckmarkButton(
 }
 
 @Composable
-fun KunaShortDescription(
-    shortDescription: String,
+fun KunaReleaseDate(
+    releaseDate: LocalDate,
     modifier: Modifier = Modifier,
 ) {
     Text(
-        text = shortDescription,
+        text = releaseDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)),
         style = MaterialTheme.typography.bodyLarge,
         modifier = modifier,
     )
