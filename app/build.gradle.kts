@@ -45,6 +45,7 @@ android {
         compose = true
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
@@ -64,6 +65,7 @@ android {
 val vActivity: String by rootProject.extra
 val vAndroidX: String by rootProject.extra
 val vComposeBom: String by rootProject.extra
+val vDesugarJdk: String by rootProject.extra
 val vEspresso: String by rootProject.extra
 val vJunit: String by rootProject.extra
 val vJunitExt: String by rootProject.extra
@@ -74,6 +76,9 @@ val vNavigation: String by rootProject.extra
 val vTimber: String by rootProject.extra
 
 dependencies {
+
+    // JDK Desugar
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$vDesugarJdk")
 
     // AndroidX
     implementation("androidx.core:core-ktx:$vAndroidX")

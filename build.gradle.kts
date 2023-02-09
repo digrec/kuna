@@ -9,6 +9,7 @@ buildscript {
     val vAndroidX by extra("1.9.0")
     val vComposeBom by extra("2023.01.00")
     val vComposeCompiler by extra("1.4.0")
+    val vDesugarJdk by extra("2.0.2")
     val vEspresso by extra("3.5.1")
     val vJunit by extra("4.13.2")
     val vJunitExt by extra("1.1.5")
