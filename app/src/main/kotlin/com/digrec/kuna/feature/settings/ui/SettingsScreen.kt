@@ -35,8 +35,7 @@ fun SettingsRoute(
 
     SettingsScreen(
         modifier = modifier,
-        versionCode = 1,
-        versionName = "0.1",
+        appVersion = settingsViewModel.appVersion,
         onClickBack = onClickBack,
     )
 }
@@ -48,8 +47,7 @@ fun SettingsRoute(
 @Composable
 internal fun SettingsScreen(
     modifier: Modifier,
-    versionCode: Int,
-    versionName: String,
+    appVersion: String,
     onClickBack: () -> Unit,
 ) {
     Scaffold(
@@ -85,7 +83,7 @@ internal fun SettingsScreen(
                     text = stringResource(R.string.app_version),
                     style = MaterialTheme.typography.titleMedium,
                 )
-                Text(text = "v$versionName+$versionCode")
+                Text(text = appVersion)
             }
         }
     }
@@ -97,8 +95,7 @@ fun SettingsScreenPreview() {
     KunaTheme {
         SettingsScreen(
             modifier = Modifier.fillMaxSize(),
-            versionCode = 1,
-            versionName = "0.1",
+            appVersion = "1.10+22",
             onClickBack = {},
         )
     }
