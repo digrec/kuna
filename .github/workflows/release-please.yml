@@ -1,0 +1,40 @@
+# Workflow which makes GitHub Release PRs using Release Please GitHub Action.
+
+# Workflow name.
+name: Release Please
+
+# On each push to the main branch.
+on:
+  push:
+    branches:
+      - main
+
+# With permissions to write repo contents (like CHANGELOG.md) and to create Release PR-s.
+permissions:
+  contents: write
+  pull-requests: write
+
+# Runs 'release-please' job that prepares a Release PR using 'release-please-action'.
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare Release PR
+        uses: google-github-actions/release-please-action@v3
+        with:
+          release-type: go
+          package-name: release-please-action
+          changelog-types: |
+            [
+              {"type":"feat","section":"Features","hidden":false},
+              {"type":"fix","section":"Bug Fixes","hidden":false},
+              {"type":"perf","section":"Performance Improvements","hidden":false},
+              {"type":"revert","section":"Reverts","hidden":false},
+              {"type":"docs","section":"Documentation","hidden":false},
+              {"type":"style","section":"Styles","hidden":false},
+              {"type":"chore","section":"Chores","hidden":false},
+              {"type":"refactor","section":"Refactors","hidden":false},
+              {"type":"test","section":"Tests","hidden":false},
+              {"type":"build","section":"Build System","hidden":false},
+              {"type":"ci","section":"Continuous Integration","hidden":false}
+            ]
