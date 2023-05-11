@@ -1,5 +1,7 @@
 # Kuna
 
+![version](https://img.shields.io/static/v1?label=version&message=1.0.0&color=blue) <!-- x-release-please-version -->
+
 Croatian commemorative 25 kuna coins collection.
 
 Source: [HNB](https://www.hnb.hr/en/currency/kuna/coins/commemorative-coins-in-circulation)
@@ -11,6 +13,7 @@ Modern Android application built with Jetpack Compose.
 Release Please GitHub Action maintains Release PRs on each push to the main branch.
 
 * Project CHANGELOG.md is generated from Conventional Commits.
+* Release version is automatically updated in README.md.
 
 Once a release PR is merged, Release Please tags the new release commit and creates a corresponding
 GitHub Release based on the tag.
