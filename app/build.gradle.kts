@@ -8,6 +8,11 @@ val vMinSdk: Int by rootProject.extra
 val vTargetSdk: Int by rootProject.extra
 val vComposeCompiler: String by rootProject.extra
 
+// Semantic version (updated by Release Please)
+val versionMajor = 1    // x-release-please-major
+val versionMinor = 0    // x-release-please-minor
+val versionPatch = 0    // x-release-please-patch
+
 android {
     namespace = "com.digrec.kuna"
     compileSdk = vCompileSdk
@@ -18,8 +23,8 @@ android {
         minSdk = vMinSdk
         targetSdk = vTargetSdk
 
-        versionCode = 1
-        versionName = "0.1"
+        versionCode = versionMajor * 10000 + versionMinor * 100 + versionPatch
+        versionName = "$versionMajor.$versionMinor.$versionPatch"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

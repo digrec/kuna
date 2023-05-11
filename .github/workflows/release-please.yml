@@ -40,3 +40,4 @@ jobs:
             ]
           extra-files: |
             README.md
+            build.gradle
