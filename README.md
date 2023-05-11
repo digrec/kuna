@@ -13,7 +13,7 @@ Modern Android application built with Jetpack Compose.
 Release Please GitHub Action maintains Release PRs on each push to the main branch.
 
 * Project CHANGELOG.md is generated from Conventional Commits.
-* Semantic release version is automatically updated in app build.gradle and here in README.
+* Semantic release version is automatically updated in app build.gradle.kts and here in README.
 
 Once a release PR is merged, Release Please tags the new release commit and creates a corresponding
 GitHub Release based on the tag.
