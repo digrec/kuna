@@ -1,6 +1,7 @@
 package com.digrec.kuna.feature.kunalist.ui.component
 
 import android.icu.text.NumberFormat
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
@@ -18,10 +20,13 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.digrec.kuna.R
@@ -51,7 +56,7 @@ fun KunaCard(
     isChecked: Boolean,
     onToggleCheckmark: () -> Unit,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val clickActionLabel = stringResource(R.string.card_tap_action)
     Card(
@@ -63,24 +68,30 @@ fun KunaCard(
             onClick(label = clickActionLabel, action = null)
         }
     ) {
-        Column {
-            Box(
-                modifier = Modifier.padding(16.dp)
-            ) {
+        Box(modifier = Modifier.padding(16.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Column(modifier = Modifier.fillMaxWidth(.3f)) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_25_kuna),
+                        contentDescription = "25kn",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(100.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.width(16.dp))
                 Column {
                     Row {
                         KunaTitle(
                             kuna.title,
-                            modifier = Modifier.fillMaxWidth((.8f)),
+                            modifier = Modifier.fillMaxWidth(),
                         )
-                        Spacer(modifier = Modifier.weight(1f))
-                        CheckmarkButton(isChecked, onToggleCheckmark)
                     }
-                    Spacer(modifier = Modifier.height(12.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
                     Row {
                         KunaReleaseDate(
                             kuna.releaseDate,
-                            modifier = Modifier.fillMaxWidth((.8f))
+                            modifier = Modifier.fillMaxWidth(.4f),
                         )
                         Spacer(modifier = Modifier.weight(1f))
                         KunaItemsIssued(itemsIssued = kuna.itemsIssued)
@@ -94,11 +105,13 @@ fun KunaCard(
 @Composable
 fun KunaTitle(
     title: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Text(
         text = title,
-        style = MaterialTheme.typography.titleLarge,
+        style = MaterialTheme.typography.titleMedium,
+        maxLines = 3,
+        overflow = TextOverflow.Ellipsis,
         modifier = modifier,
     )
 }
@@ -107,7 +120,7 @@ fun KunaTitle(
 fun CheckmarkButton(
     isChecked: Boolean,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     KunaIconToggleButton(
         checked = isChecked,
@@ -137,7 +150,7 @@ fun KunaReleaseDate(
 ) {
     Text(
         text = releaseDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)),
-        style = MaterialTheme.typography.bodyLarge,
+        style = MaterialTheme.typography.bodyMedium,
         modifier = modifier,
     )
 }
@@ -149,7 +162,7 @@ fun KunaItemsIssued(
 ) {
     Text(
         text = NumberFormat.getInstance().format(itemsIssued),
-        style = MaterialTheme.typography.bodyLarge,
+        style = MaterialTheme.typography.bodyMedium,
         modifier = modifier,
     )
 }
