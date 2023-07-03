@@ -1,5 +1,34 @@
 # Changelog
 
+## [1.1.0](https://github.com/digrec/kuna/compare/v1.0.0...v1.1.0) (2023-07-03)
+
+
+### Features
+
+* add full title to Kuna entity ([2a0da85](https://github.com/digrec/kuna/commit/2a0da853b93b7725ff504d45c485b92b5b747ba5))
+* show 3 line title and a placeholder icon on Kuna card ([df87718](https://github.com/digrec/kuna/commit/df87718dce5b6dcea099f69ff7b2e2b8d5d2446e))
+* show collected checkmark on Kuna card ([2675de3](https://github.com/digrec/kuna/commit/2675de356e607386bde3272a4837cf8c78a24ef4))
+
+
+### Bug Fixes
+
+* **ci:** fix build.gradle.kts file path in release-please.yml ([93c2ce0](https://github.com/digrec/kuna/commit/93c2ce098d520cf25815dbe284b3e82e78de672c))
+* **ci:** list build.gradle.kts for updates by Release Please ([4ab1c29](https://github.com/digrec/kuna/commit/4ab1c297d16c5dbe6daae449bd4294263919ff4b))
+
+
+### Chores
+
+* create project LICENSE ([51e67ae](https://github.com/digrec/kuna/commit/51e67ae12609d4e3dc4cca0d3eae36eb00f5d20f))
+* **deps:** update Activity to v1.7.2 ([be4b15c](https://github.com/digrec/kuna/commit/be4b15ccee3605c3dd24144ae9a0b9394bb236df))
+* **deps:** update AGP to v8.0.2 ([5aad320](https://github.com/digrec/kuna/commit/5aad32067dcdae0986b4d9bb437f2ebab5b72380))
+* **deps:** update AGP to v8.1.0-rc01 ([28b2613](https://github.com/digrec/kuna/commit/28b2613bad81b89f1f68de58cbb1c2330496868e))
+* **deps:** update AndroidX to v1.10.1 ([e40f720](https://github.com/digrec/kuna/commit/e40f720c3fbfd2f5fd9856ef697ad4c887627eec))
+* **deps:** update Compose to v2023.05.01 ([63ed903](https://github.com/digrec/kuna/commit/63ed903cf739bdf3a51f4032fd2a93d6d9977eea))
+* **deps:** update Compose to v2023.06.01 ([ccd6027](https://github.com/digrec/kuna/commit/ccd60271c3008c592eba0cb05e52827bab005d21))
+* **deps:** update Koin to v3.4.2 and Koin Compose to v3.4.5 ([43385d7](https://github.com/digrec/kuna/commit/43385d72bd6865ebb2c3a72460de66f40ad90c1b))
+* **deps:** update Kotlin to v1.8.21 ([f1b1c18](https://github.com/digrec/kuna/commit/f1b1c18a50db6a91f7c244101b76943a6d01aadd))
+* **deps:** update Navigation to v2.6 ([3d23254](https://github.com/digrec/kuna/commit/3d23254405e0bd38f68a8bad14ed98ba35f8b460))
+
 ## 1.0.0 (2023-05-11)
 
 
