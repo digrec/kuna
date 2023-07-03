@@ -4,4 +4,5 @@
     <string name="app_version">Version</string>
     <string name="back">Back</string>
     <string name="card_tap_action">Open Kuna Details Screen</string>
+    <string name="collected_checkmark">Collected checkmark</string>
 </resources>

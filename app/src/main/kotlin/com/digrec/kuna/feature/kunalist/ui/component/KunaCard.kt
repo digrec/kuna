@@ -88,13 +88,18 @@ fun KunaCard(
                         )
                     }
                     Spacer(modifier = Modifier.height(8.dp))
-                    Row {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
                         KunaReleaseDate(
                             kuna.releaseDate,
                             modifier = Modifier.fillMaxWidth(.4f),
                         )
                         Spacer(modifier = Modifier.weight(1f))
-                        KunaItemsIssued(itemsIssued = kuna.itemsIssued)
+                        KunaItemsIssued(
+                            itemsIssued = kuna.itemsIssued,
+                            modifier = Modifier.fillMaxWidth(.4f),
+                        )
+                        Spacer(modifier = Modifier.weight(1f))
+                        Checkmark(isChecked = kuna.isCollected)
                     }
                 }
             }
@@ -113,6 +118,23 @@ fun KunaTitle(
         maxLines = 3,
         overflow = TextOverflow.Ellipsis,
         modifier = modifier,
+    )
+}
+
+@Composable
+fun Checkmark(
+    isChecked: Boolean,
+    modifier: Modifier = Modifier,
+) {
+    Icon(
+        imageVector = Icons.Filled.Check,
+        contentDescription = stringResource(R.string.collected_checkmark),
+        modifier = modifier,
+        tint = if (isChecked) {
+            MaterialTheme.colorScheme.primary
+        } else {
+            MaterialTheme.colorScheme.primary.copy(alpha = .3f)
+        },
     )
 }
 
