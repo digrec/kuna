@@ -38,6 +38,9 @@ android {
         named("androidTest") { java.srcDir("src/androidTest/kotlin") }
     }
     buildTypes {
+        debug {
+            versionNameSuffix = "-debug"
+        }
         release {
             isMinifyEnabled = false
             signingConfig = signingConfigs.getByName("debug")
