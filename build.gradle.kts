@@ -1,8 +1,8 @@
 buildscript {
     // common SDK versions
-    val vCompileSdk by extra(33)
+    val vCompileSdk by extra(34)
     val vMinSdk by extra(24)
-    val vTargetSdk by extra(33)
+    val vTargetSdk by extra(34)
 
     // common dependency versions
     val vActivity by extra("1.7.2")
