@@ -16,7 +16,7 @@ buildscript {
     val vKoin by extra("3.4.3")
     val vKoinCompose by extra("3.4.6")
     val vLifecycle by extra("2.6.1")
-    val vNavigation by extra("2.6.0")
+    val vNavigation by extra("2.7.1")
     val vTimber by extra("5.0.1")
 }
 
