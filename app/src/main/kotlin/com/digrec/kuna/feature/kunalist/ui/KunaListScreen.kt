@@ -42,7 +42,7 @@ import org.koin.androidx.compose.getViewModel
 
 sealed interface ListUiState {
 
-    object Loading : ListUiState
+     data object Loading : ListUiState
 
     data class Success(val list: List<Kuna>) : ListUiState
 }
