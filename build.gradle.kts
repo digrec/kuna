@@ -15,6 +15,8 @@ buildscript {
     val vJunitExt by extra("1.1.5")
     val vKoin by extra("3.4.3")
     val vKoinCompose by extra("3.4.6")
+    val vKotlinSerialization by extra("1.6.0")
+    val vKotlinxDateTime by extra("0.4.1")
     val vLifecycle by extra("2.6.1")
     val vNavigation by extra("2.7.1")
     val vTimber by extra("5.0.1")
@@ -27,6 +29,7 @@ plugins {
 
     // Kotlin
     id("org.jetbrains.kotlin.android") version "1.9.0" apply false
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0" apply false
 }
 
 tasks.register("clean", Delete::class) {

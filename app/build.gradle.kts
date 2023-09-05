@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 val vCompileSdk: Int by rootProject.extra
@@ -81,6 +82,8 @@ val vJunit: String by rootProject.extra
 val vJunitExt: String by rootProject.extra
 val vKoin: String by rootProject.extra
 val vKoinCompose: String by rootProject.extra
+val vKotlinSerialization: String by rootProject.extra
+val vKotlinxDateTime: String by rootProject.extra
 val vLifecycle: String by rootProject.extra
 val vNavigation: String by rootProject.extra
 val vTimber: String by rootProject.extra
@@ -111,6 +114,12 @@ dependencies {
     // Koin DI
     implementation("io.insert-koin:koin-android:$vKoin")
     implementation("io.insert-koin:koin-androidx-compose:$vKoinCompose")
+
+    // Kotlin Serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$vKotlinSerialization")
+
+    // Kotlin Date/Time
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:$vKotlinxDateTime")
 
     // Timber
     implementation("com.jakewharton.timber:timber:$vTimber")
