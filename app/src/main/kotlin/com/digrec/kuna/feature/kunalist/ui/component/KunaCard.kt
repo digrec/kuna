@@ -33,7 +33,8 @@ import com.digrec.kuna.R
 import com.digrec.kuna.core.domain.model.Kuna
 import com.digrec.kuna.core.domain.model.previewKunaList
 import com.digrec.kuna.core.ui.theme.KunaTheme
-import java.time.LocalDate
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.toJavaLocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
@@ -171,7 +172,8 @@ fun KunaReleaseDate(
     modifier: Modifier = Modifier,
 ) {
     Text(
-        text = releaseDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)),
+        text = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
+            .format(releaseDate.toJavaLocalDate()),
         style = MaterialTheme.typography.bodyMedium,
         modifier = modifier,
     )
