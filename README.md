@@ -2,7 +2,7 @@
 
 ![version](https://img.shields.io/static/v1?label=version&message=1.1.0&color=blue) <!-- x-release-please-version -->
 
-<img src="./doc/app-main-screen.png" width="600">
+<img src="./doc/app-main-screen.png" width="380">
 
 Croatian commemorative 25 kuna coins collection.
 
