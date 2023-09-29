@@ -6,7 +6,7 @@ buildscript {
 
     // common dependency versions
     val vActivity by extra("1.7.2")
-    val vAndroidX by extra("1.10.1")
+    val vAndroidX by extra("1.12.0")
     val vComposeBom by extra("2023.08.00")
     val vComposeCompiler by extra("1.5.2")
     val vDesugarJdk by extra("2.0.3")
@@ -18,8 +18,8 @@ buildscript {
     val vKotlinSerialization by extra("1.6.0")
     val vKotlinxDateTime by extra("0.4.1")
     val vKtor by extra("2.3.4")
-    val vLifecycle by extra("2.6.1")
-    val vNavigation by extra("2.7.1")
+    val vLifecycle by extra("2.6.2")
+    val vNavigation by extra("2.7.3")
     val vSlf4j by extra("2.0.9")
     val vTimber by extra("5.0.1")
 }
