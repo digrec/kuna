@@ -45,6 +45,8 @@ sealed interface ListUiState {
     data object Loading : ListUiState
 
     data class Success(val list: List<Kuna>) : ListUiState
+
+    data class Error(val exception: Throwable? = null) : ListUiState
 }
 
 @Composable
@@ -99,12 +101,15 @@ internal fun KunaListScreen(
         },
     ) { padding ->
         when (listState) {
-            ListUiState.Loading -> EmptyState(padding)
+            is ListUiState.Loading -> EmptyState(padding)
+
             is ListUiState.Success -> KunaGrid(
                 listState = listState,
                 removeFromCollection = removeFromCollection,
                 modifier = Modifier.padding(padding)
             )
+
+            is ListUiState.Error -> EmptyState(padding)
         }
     }
 }

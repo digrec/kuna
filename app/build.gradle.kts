@@ -84,8 +84,10 @@ val vKoin: String by rootProject.extra
 val vKoinCompose: String by rootProject.extra
 val vKotlinSerialization: String by rootProject.extra
 val vKotlinxDateTime: String by rootProject.extra
+val vKtor: String by rootProject.extra
 val vLifecycle: String by rootProject.extra
 val vNavigation: String by rootProject.extra
+val vSlf4j: String by rootProject.extra
 val vTimber: String by rootProject.extra
 
 dependencies {
@@ -114,6 +116,14 @@ dependencies {
     // Koin DI
     implementation("io.insert-koin:koin-android:$vKoin")
     implementation("io.insert-koin:koin-androidx-compose:$vKoinCompose")
+
+    // Ktor
+    implementation("io.ktor:ktor-client-android:$vKtor")
+    implementation("io.ktor:ktor-client-content-negotiation:$vKtor")
+    implementation("io.ktor:ktor-client-serialization:$vKtor")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$vKtor")
+    implementation("io.ktor:ktor-client-logging:$vKtor")
+    implementation("org.slf4j:slf4j-simple:$vSlf4j")
 
     // Kotlin Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$vKotlinSerialization")

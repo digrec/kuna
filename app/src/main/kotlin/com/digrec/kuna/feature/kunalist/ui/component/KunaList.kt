@@ -17,7 +17,7 @@ fun LazyGridScope.kunaList(
     onCoinCheckedChanged: (String, Boolean) -> Unit
 ) {
     when (listState) {
-        ListUiState.Loading -> Unit
+        is ListUiState.Loading -> Unit
         is ListUiState.Success -> {
             items(listState.list, key = { it.id }) { kuna ->
                 KunaCard(
@@ -28,5 +28,7 @@ fun LazyGridScope.kunaList(
                 )
             }
         }
+
+        is ListUiState.Error -> Unit
     }
 }

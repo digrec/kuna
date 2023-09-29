@@ -17,8 +17,10 @@ buildscript {
     val vKoinCompose by extra("3.4.6")
     val vKotlinSerialization by extra("1.6.0")
     val vKotlinxDateTime by extra("0.4.1")
+    val vKtor by extra("2.3.4")
     val vLifecycle by extra("2.6.1")
     val vNavigation by extra("2.7.1")
+    val vSlf4j by extra("2.0.9")
     val vTimber by extra("5.0.1")
 }
 

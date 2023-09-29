@@ -1,6 +1,7 @@
 package com.digrec.kuna.core.domain.repository
 
 import com.digrec.kuna.core.domain.model.Kuna
+import com.digrec.kuna.core.domain.result.Result
 import kotlinx.coroutines.flow.Flow
 
 
@@ -14,5 +15,13 @@ interface KunaRepository {
     /**
      * Returns all 25 Kuna coins as a stream.
      */
-    fun getAllKuna(): Flow<List<Kuna>>
+    fun getAllKuna(): Flow<Result<List<Kuna>>>
+
+    companion object {
+        const val API_BASE_URL = "https://digrec.github.io"
+    }
+
+    sealed class ApiEndpoints(val url: String) {
+        data object KunaList : ApiEndpoints("/kunas/res/json/kunas.json")
+    }
 }
