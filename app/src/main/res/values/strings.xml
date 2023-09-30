@@ -5,4 +5,5 @@
     <string name="back">Back</string>
     <string name="card_tap_action">Open Kuna Details Screen</string>
     <string name="collected_checkmark">Collected checkmark</string>
+    <string name="loading_list_failed">Loading list failed</string>
 </resources>

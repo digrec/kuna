@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsBottomHeight
@@ -16,6 +17,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -26,6 +28,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -101,7 +104,7 @@ internal fun KunaListScreen(
         },
     ) { padding ->
         when (listState) {
-            is ListUiState.Loading -> EmptyState(padding)
+            is ListUiState.Loading -> LoadingState(padding)
 
             is ListUiState.Success -> KunaGrid(
                 listState = listState,
@@ -109,7 +112,7 @@ internal fun KunaListScreen(
                 modifier = Modifier.padding(padding)
             )
 
-            is ListUiState.Error -> EmptyState(padding)
+            is ListUiState.Error -> ErrorState(padding)
         }
     }
 }
@@ -140,10 +143,37 @@ private fun KunaGrid(
 }
 
 @Composable
-private fun EmptyState(padding: PaddingValues) {
-    Box(modifier = Modifier.padding(padding)) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Text(text = "Hello ${stringResource(R.string.app_name)}!")
+private fun LoadingState(padding: PaddingValues) {
+    Box(
+        modifier = Modifier
+            .padding(padding)
+            .fillMaxWidth()
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
+        ) {
+            CircularProgressIndicator()
+        }
+    }
+}
+
+@Composable
+private fun ErrorState(padding: PaddingValues) {
+    Box(
+        modifier = Modifier
+            .padding(padding)
+            .fillMaxWidth()
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
+        ) {
+            Text(text = stringResource(R.string.loading_list_failed))
         }
     }
 }
