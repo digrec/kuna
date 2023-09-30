@@ -1,5 +1,56 @@
 # Changelog
 
+## [1.2.0](https://github.com/digrec/kuna/compare/v1.1.0...v1.2.0) (2023-09-30)
+
+
+### Features
+
+* load Kuna coins list from server ([739282c](https://github.com/digrec/kuna/commit/739282cdd952d3b7d0f601b59bf81ec683d28751))
+* serializable KunaJson data model ([db43ac7](https://github.com/digrec/kuna/commit/db43ac7ebd5da8429b5b9aaa9485cfd1b0d70b81))
+* show list loading indicator or error in respective UI state ([7b76dc1](https://github.com/digrec/kuna/commit/7b76dc10491a8cb840b10fc639e82dcde4d960b6))
+
+
+### Bug Fixes
+
+* **readme:** lower the app screenshot size ([798c923](https://github.com/digrec/kuna/commit/798c923fbcd496dc89189b164ccc34071c425583))
+* set current Koin instance to Compose context ([211a23e](https://github.com/digrec/kuna/commit/211a23e752a849cee65a96a7b2bb51c73fb9c731))
+
+
+### Documentation
+
+* add app screenshot to README.md ([19c1a8e](https://github.com/digrec/kuna/commit/19c1a8ef0015864cca9a68419b94152d1f9269b0))
+
+
+### Styles
+
+* fix interface formatting ([64a4aa5](https://github.com/digrec/kuna/commit/64a4aa5ecb64de3158f0fef05dab7bcb0204f795))
+* make sealed sub-object a data object ([c6c382c](https://github.com/digrec/kuna/commit/c6c382cfdaacde0e96ac3fc919392c98c683e445))
+
+
+### Chores
+
+* **deps:** update AGP to v8.1.1 ([23576c5](https://github.com/digrec/kuna/commit/23576c56fb7265218301aa70aae6ec1745b8afdf))
+* **deps:** update AGP to v8.1.2 ([80e1cdf](https://github.com/digrec/kuna/commit/80e1cdf4241d9a37dde35619210ac43d75c4e7d0))
+* **deps:** update AndroidX to v1.12 ([a9c98ee](https://github.com/digrec/kuna/commit/a9c98ee62ed017b14274cbe642a34c703fadb063))
+* **deps:** update Compose to v2023.08 ([0701427](https://github.com/digrec/kuna/commit/0701427c1175654b661a471001a1f22b247f2d07))
+* **deps:** update Compose to v2023.09.02 ([5bad7f1](https://github.com/digrec/kuna/commit/5bad7f167ddea43c1db8a57d8ab76194b845ce3d))
+* **deps:** update Koin to v3.4.3 and Koin Compose to v3.4.6 ([db64016](https://github.com/digrec/kuna/commit/db640162e0471947683dccbb180f782a94cd5dd6))
+* **deps:** update Koin to v3.5.0 and Koin Compose to v3.5.0 ([d0bb5a4](https://github.com/digrec/kuna/commit/d0bb5a46cbfc467a8a9aa8473bd0684a04d1c249))
+* **deps:** update Kotlin to v1.9 ([0c9de15](https://github.com/digrec/kuna/commit/0c9de158b325ccceae78134f2653a7a3a2ef927b))
+* **deps:** update Navigation to v2.7.1 ([88f572f](https://github.com/digrec/kuna/commit/88f572f8eabec93f0115d74792650264c2d033e0))
+* replace deprecated packagingOptions with packaging ([7f462c0](https://github.com/digrec/kuna/commit/7f462c07a1bd830ecd58e38f07c259c8882f3d06))
+
+
+### Refactors
+
+* use kotlinx.datetime instead of java.time ([f7cabbe](https://github.com/digrec/kuna/commit/f7cabbec74b6e5ffee7bb1ad3b06d8465a1a0b52))
+
+
+### Build System
+
+* add "-debug" suffix to app version name on debug build ([08adcc5](https://github.com/digrec/kuna/commit/08adcc5b1073f90d27df87b8dcac5fc3a698286a))
+* target Android 14 (API 34) ([2309d5e](https://github.com/digrec/kuna/commit/2309d5e8232925f2941ef317c8a1a3fb86a5815f))
+
 ## [1.1.0](https://github.com/digrec/kuna/compare/v1.0.0...v1.1.0) (2023-07-03)
 
 
