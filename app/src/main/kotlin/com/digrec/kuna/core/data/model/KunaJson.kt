@@ -13,4 +13,6 @@ data class KunaJson(
     val title: String,
     val releaseDate: LocalDate,
     val itemsIssued: Int,
+    val imageObverse: String,
+    val imageReverse: String,
 )

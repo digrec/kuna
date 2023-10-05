@@ -9,4 +9,6 @@ fun KunaJson.toKuna() = Kuna(
     title = title,
     releaseDate = releaseDate,
     itemsIssued = itemsIssued,
+    imageObverse = imageObverse,
+    imageReverse = imageReverse,
 )
