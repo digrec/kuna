@@ -19,6 +19,11 @@ interface KunaRepository {
 
     companion object {
         const val API_BASE_URL = "https://digrec.github.io"
+
+        /**
+         * Returns image URL for the given image.
+         */
+        fun imgUrl(image: String) = "$API_BASE_URL/kunas/res/img/$image"
     }
 
     sealed class ApiEndpoints(val url: String) {

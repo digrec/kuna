@@ -1,7 +1,6 @@
 package com.digrec.kuna.feature.kunalist.ui.component
 
 import android.icu.text.NumberFormat
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,9 +28,11 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.digrec.kuna.R
 import com.digrec.kuna.core.domain.model.Kuna
 import com.digrec.kuna.core.domain.model.previewKunaList
+import com.digrec.kuna.core.domain.repository.KunaRepository
 import com.digrec.kuna.core.ui.theme.KunaTheme
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.toJavaLocalDate
@@ -72,9 +73,11 @@ fun KunaCard(
         Box(modifier = Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(modifier = Modifier.fillMaxWidth(.3f)) {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_25_kuna),
+                    AsyncImage(
+                        model = KunaRepository.imgUrl(kuna.imageObverse),
                         contentDescription = "25kn",
+                        placeholder = painterResource(id = R.drawable.ic_25_kuna),
+                        error = painterResource(id = R.drawable.ic_25_kuna),
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(100.dp)

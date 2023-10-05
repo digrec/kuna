@@ -75,6 +75,7 @@ android {
 
 val vActivity: String by rootProject.extra
 val vAndroidX: String by rootProject.extra
+val vCoil: String by rootProject.extra
 val vComposeBom: String by rootProject.extra
 val vDesugarJdk: String by rootProject.extra
 val vEspresso: String by rootProject.extra
@@ -124,6 +125,9 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json:$vKtor")
     implementation("io.ktor:ktor-client-logging:$vKtor")
     implementation("org.slf4j:slf4j-simple:$vSlf4j")
+
+    // Coil
+    implementation("io.coil-kt:coil-compose:$vCoil")
 
     // Kotlin Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$vKotlinSerialization")
