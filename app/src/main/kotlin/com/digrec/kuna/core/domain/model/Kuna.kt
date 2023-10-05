@@ -9,7 +9,6 @@ import kotlinx.datetime.LocalDate
 data class Kuna(
     val id: String,
     val title: String,
-    val titleFull: String = "25 kuna - $title",
     val releaseDate: LocalDate,
     val itemsIssued: Int,
     val isCollected: Boolean = false,
