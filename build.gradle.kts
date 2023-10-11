@@ -20,7 +20,7 @@ buildscript {
     val vKotlinxDateTime by extra("0.4.1")
     val vKtor by extra("2.3.4")
     val vLifecycle by extra("2.6.2")
-    val vNavigation by extra("2.7.3")
+    val vNavigation by extra("2.7.4")
     val vSlf4j by extra("2.0.9")
     val vTimber by extra("5.0.1")
 }
