@@ -1,7 +1,7 @@
 package com.digrec.kuna.core.data.repository
 
-import com.digrec.kuna.core.data.mapper.toKuna
-import com.digrec.kuna.core.data.model.KunaJson
+import com.digrec.kuna.core.data.network.mapper.toKuna
+import com.digrec.kuna.core.data.network.model.KunaJson
 import com.digrec.kuna.core.domain.model.Kuna
 import com.digrec.kuna.core.domain.repository.KunaRepository
 import com.digrec.kuna.core.domain.result.Result

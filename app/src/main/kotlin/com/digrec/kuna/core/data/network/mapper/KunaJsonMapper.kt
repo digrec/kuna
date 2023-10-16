@@ -1,6 +1,6 @@
-package com.digrec.kuna.core.data.mapper
+package com.digrec.kuna.core.data.network.mapper
 
-import com.digrec.kuna.core.data.model.KunaJson
+import com.digrec.kuna.core.data.network.model.KunaJson
 import com.digrec.kuna.core.domain.model.Kuna
 
 

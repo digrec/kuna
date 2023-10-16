@@ -1,4 +1,4 @@
-package com.digrec.kuna.core.data.model
+package com.digrec.kuna.core.data.network.model
 
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.Serializable
