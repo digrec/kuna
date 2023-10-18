@@ -25,7 +25,7 @@ class KunaListViewModel(
 
     val listUiState: StateFlow<ListUiState> = getAllKuna().toState()
 
-    fun removeFromCollection(kunaId: String) {
+    fun removeFromCollection(kunaId: Int) {
         viewModelScope.launch {
             Timber.d("removeFromCollection: $kunaId")
         }

@@ -14,7 +14,7 @@ import timber.log.Timber
  */
 fun LazyGridScope.kunaList(
     listState: ListUiState,
-    onCoinCheckedChanged: (String, Boolean) -> Unit
+    onCoinCheckedChanged: (Int, Boolean) -> Unit
 ) {
     when (listState) {
         is ListUiState.Loading -> Unit

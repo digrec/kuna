@@ -75,7 +75,7 @@ fun KunaListRoute(
 internal fun KunaListScreen(
     listState: ListUiState,
     onClickSettings: () -> Unit,
-    removeFromCollection: (String) -> Unit,
+    removeFromCollection: (Int) -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -120,7 +120,7 @@ internal fun KunaListScreen(
 @Composable
 private fun KunaGrid(
     listState: ListUiState,
-    removeFromCollection: (String) -> Unit,
+    removeFromCollection: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val scrollableState = rememberLazyGridState()

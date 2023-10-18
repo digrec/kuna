@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class KunaJson(
-    val id: String,
+    val id: Int,
     val title: String,
     val releaseDate: LocalDate,
     val itemsIssued: Int,
