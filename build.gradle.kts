@@ -10,7 +10,7 @@ buildscript {
     val vComposeBom by extra("2023.10.00")
     val vCoil by extra("2.4.0")
     val vComposeCompiler by extra("1.5.2")
-    val vDesugarJdk by extra("2.0.3")
+    val vDesugarJdk by extra("2.0.4")
     val vEspresso by extra("3.5.1")
     val vJunit by extra("4.13.2")
     val vJunitExt by extra("1.1.5")
