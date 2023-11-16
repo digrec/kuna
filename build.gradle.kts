@@ -8,7 +8,7 @@ buildscript {
     val vActivity by extra("1.8.1")
     val vAndroidX by extra("1.12.0")
     val vComposeBom by extra("2023.10.01")
-    val vCoil by extra("2.4.0")
+    val vCoil by extra("2.5.0")
     val vComposeCompiler by extra("1.5.2")
     val vDesugarJdk by extra("2.0.4")
     val vEspresso by extra("3.5.1")
