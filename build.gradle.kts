@@ -9,7 +9,7 @@ buildscript {
     val vAndroidX by extra("1.12.0")
     val vComposeBom by extra("2023.10.01")
     val vCoil by extra("2.5.0")
-    val vComposeCompiler by extra("1.5.3")
+    val vComposeCompiler by extra("1.5.8")
     val vDesugarJdk by extra("2.0.4")
     val vEspresso by extra("3.5.1")
     val vJunit by extra("4.13.2")
@@ -31,8 +31,8 @@ plugins {
     id("com.android.application") version "8.3.0" apply false
 
     // Kotlin
-    id("org.jetbrains.kotlin.android") version "1.9.10" apply false
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0" apply false
+    id("org.jetbrains.kotlin.android") version "1.9.22" apply false
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.22" apply false
 }
 
 tasks.register("clean", Delete::class) {
