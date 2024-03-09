@@ -16,7 +16,7 @@ buildscript {
     val vJunitExt by extra("1.1.5")
     val vKoin by extra("3.5.3")
     val vKoinCompose by extra("3.5.3")
-    val vKotlinSerialization by extra("1.6.2")
+    val vKotlinSerialization by extra("1.6.3")
     val vKotlinxDateTime by extra("0.5.0")
     val vKtor by extra("2.3.7")
     val vLifecycle by extra("2.6.2")
