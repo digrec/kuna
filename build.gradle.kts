@@ -27,8 +27,8 @@ buildscript {
 
 plugins {
     // Android
-    id("com.android.library") version "8.2.0" apply false
-    id("com.android.application") version "8.2.0" apply false
+    id("com.android.library") version "8.3.0" apply false
+    id("com.android.application") version "8.3.0" apply false
 
     // Kotlin
     id("org.jetbrains.kotlin.android") version "1.9.10" apply false
@@ -36,5 +36,5 @@ plugins {
 }
 
 tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+    delete(rootProject.layout.buildDirectory)
 }
