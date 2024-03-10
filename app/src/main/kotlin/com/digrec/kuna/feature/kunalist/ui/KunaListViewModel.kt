@@ -3,15 +3,10 @@ package com.digrec.kuna.feature.kunalist.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.digrec.kuna.core.domain.GetAllKunaUseCase
-import com.digrec.kuna.core.domain.model.Kuna
+import com.digrec.kuna.core.domain.RefreshAllKunaUseCase
 import com.digrec.kuna.core.domain.result.Result
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -20,29 +15,66 @@ import timber.log.Timber
  * Created by Dejan Igrec
  */
 class KunaListViewModel(
-    getAllKuna: GetAllKunaUseCase,
+    val getAllKuna: GetAllKunaUseCase,
+    val refreshAllKuna: RefreshAllKunaUseCase,
 ) : ViewModel() {
 
-    val listUiState: StateFlow<ListUiState> = getAllKuna().toState()
+    private val _refreshState = MutableStateFlow<RefreshState>(RefreshState.NotRefreshing)
+    val refreshState: StateFlow<RefreshState> = _refreshState
+
+    private val _listUiState = MutableStateFlow<ListUiState>(ListUiState.NotLoading)
+    val listUiState: StateFlow<ListUiState> = _listUiState
+
+    init {
+        load()
+    }
+
+    /**
+     * Called from pull-to-refresh UI action.
+     */
+    fun refresh() {
+        _refreshState.value = RefreshState.Refreshing
+
+        viewModelScope.launch {
+            when (val refreshResult = refreshAllKuna()) {
+                is Result.Success -> {
+                    _refreshState.emit(RefreshState.Success)
+                }
+
+                is Result.Error -> {
+                    _refreshState.emit(RefreshState.Error(refreshResult.exception))
+                }
+            }
+
+            load()
+        }
+    }
+
+    fun refreshed() {
+        viewModelScope.launch {
+            _refreshState.emit(RefreshState.NotRefreshing)
+        }
+    }
+
+    private fun load() {
+        viewModelScope.launch {
+            _listUiState.emit(ListUiState.Loading)
+
+            when (val result = getAllKuna()) {
+                is Result.Success -> {
+                    _listUiState.emit(ListUiState.Success(result.data))
+                }
+
+                is Result.Error -> {
+                    _listUiState.emit(ListUiState.Error(result.exception))
+                }
+            }
+        }
+    }
 
     fun removeFromCollection(kunaId: Int) {
         viewModelScope.launch {
             Timber.d("removeFromCollection: $kunaId")
         }
     }
-
-    private fun Flow<Result<List<Kuna>>>.toState(): StateFlow<ListUiState> =
-        this
-            .map {
-                when (it) {
-                    is Result.Success -> ListUiState.Success(it.data)
-                    is Result.Error -> ListUiState.Error(it.exception)
-                }
-            }.onStart { emit(ListUiState.Loading) }
-            .catch { emit(ListUiState.Error(it)) }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5_000),
-                initialValue = ListUiState.Loading
-            )
 }

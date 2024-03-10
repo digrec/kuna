@@ -21,6 +21,7 @@ buildscript {
     val vKtor by extra("2.3.9")
     val vLifecycle by extra("2.7.0")
     val vNavigation by extra("2.7.7")
+    val vRoom by extra("2.6.1")
     val vSlf4j by extra("2.0.12")
     val vTimber by extra("5.0.1")
 }
@@ -33,6 +34,7 @@ plugins {
     // Kotlin
     id("org.jetbrains.kotlin.android") version "1.9.22" apply false
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.22" apply false
+    id("com.google.devtools.ksp") version "1.9.22-1.0.17" apply false
 }
 
 tasks.register("clean", Delete::class) {

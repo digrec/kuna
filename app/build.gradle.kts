@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.serialization")
+    id("com.google.devtools.ksp")
 }
 
 val vCompileSdk: Int by rootProject.extra
@@ -89,6 +90,7 @@ val vKotlinxDateTime: String by rootProject.extra
 val vKtor: String by rootProject.extra
 val vLifecycle: String by rootProject.extra
 val vNavigation: String by rootProject.extra
+val vRoom: String by rootProject.extra
 val vSlf4j: String by rootProject.extra
 val vTimber: String by rootProject.extra
 
@@ -118,6 +120,12 @@ dependencies {
     // Koin DI
     implementation("io.insert-koin:koin-android:$vKoin")
     implementation("io.insert-koin:koin-androidx-compose:$vKoinCompose")
+
+    // Room
+    implementation("androidx.room:room-runtime:$vRoom")
+    implementation("androidx.room:room-ktx:$vRoom")
+    annotationProcessor("androidx.room:room-compiler:$vRoom")
+    ksp("androidx.room:room-compiler:$vRoom")
 
     // Ktor
     implementation("io.ktor:ktor-client-android:$vKtor")

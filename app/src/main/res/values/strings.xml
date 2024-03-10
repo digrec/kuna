@@ -6,4 +6,6 @@
     <string name="card_tap_action">Open Kuna Details Screen</string>
     <string name="collected_checkmark">Collected checkmark</string>
     <string name="loading_list_failed">Loading list failed</string>
+    <string name="refresh_list_failed">Refresh failed. Check your Internet connection</string>
+    <string name="retry">Retry</string>
 </resources>
