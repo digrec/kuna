@@ -5,8 +5,8 @@ buildscript {
     val vTargetSdk by extra(34)
 
     // common dependency versions
-    val vActivity by extra("1.8.2")
-    val vAndroidX by extra("1.12.0")
+    val vActivity by extra("1.9.1")
+    val vAndroidX by extra("1.13.1")
     val vCoil by extra("2.6.0")
     val vComposeBom by extra("2024.06.00")
     val vComposeCompiler by extra("1.5.14")
@@ -19,7 +19,7 @@ buildscript {
     val vKotlinSerialization by extra("1.6.3")
     val vKotlinxDateTime by extra("0.5.0")
     val vKtor by extra("2.3.9")
-    val vLifecycle by extra("2.7.0")
+    val vLifecycle by extra("2.8.4")
     val vNavigation by extra("2.7.7")
     val vRoom by extra("2.6.1")
     val vSlf4j by extra("2.0.12")
