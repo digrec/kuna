@@ -1,14 +1,16 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.serialization")
     id("com.google.devtools.ksp")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 val vCompileSdk: Int by rootProject.extra
 val vMinSdk: Int by rootProject.extra
 val vTargetSdk: Int by rootProject.extra
-val vComposeCompiler: String by rootProject.extra
 
 // Semantic version (updated by Release Please)
 val versionMajor = 1    // x-release-please-major
@@ -61,11 +63,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = vComposeCompiler
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
     }
     packaging {
         resources {
