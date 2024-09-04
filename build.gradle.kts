@@ -21,7 +21,7 @@ buildscript {
     val vLifecycle by extra("2.8.4")
     val vNavigation by extra("2.7.7")
     val vRoom by extra("2.6.1")
-    val vSlf4j by extra("2.0.13")
+    val vSlf4j by extra("2.0.16")
     val vTimber by extra("5.0.1")
 }
 
