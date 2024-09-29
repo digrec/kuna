@@ -1,16 +1,12 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.serialization")
-    id("com.google.devtools.ksp")
-    id("org.jetbrains.kotlin.plugin.compose")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.jetbrains.kotlin.compose)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
+    alias(libs.plugins.google.devtools.ksp)
 }
-
-val vCompileSdk: Int by rootProject.extra
-val vMinSdk: Int by rootProject.extra
-val vTargetSdk: Int by rootProject.extra
 
 // Semantic version (updated by Release Please)
 val versionMajor = 1    // x-release-please-major
@@ -19,13 +15,13 @@ val versionPatch = 0    // x-release-please-patch
 
 android {
     namespace = "com.digrec.kuna"
-    compileSdk = vCompileSdk
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "com.digrec.kuna"
 
-        minSdk = vMinSdk
-        targetSdk = vTargetSdk
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
 
         versionCode = versionMajor * 10000 + versionMinor * 100 + versionPatch
         versionName = "$versionMajor.$versionMinor.$versionPatch"
@@ -76,84 +72,64 @@ android {
     }
 }
 
-val vActivity: String by rootProject.extra
-val vAndroidX: String by rootProject.extra
-val vCoil: String by rootProject.extra
-val vComposeBom: String by rootProject.extra
-val vDesugarJdk: String by rootProject.extra
-val vEspresso: String by rootProject.extra
-val vJunit: String by rootProject.extra
-val vJunitExt: String by rootProject.extra
-val vKoin: String by rootProject.extra
-val vKoinCompose: String by rootProject.extra
-val vKotlinSerialization: String by rootProject.extra
-val vKotlinxDateTime: String by rootProject.extra
-val vKtor: String by rootProject.extra
-val vLifecycle: String by rootProject.extra
-val vNavigation: String by rootProject.extra
-val vRoom: String by rootProject.extra
-val vSlf4j: String by rootProject.extra
-val vTimber: String by rootProject.extra
-
 dependencies {
 
     // JDK Desugar
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$vDesugarJdk")
+    coreLibraryDesugaring(libs.android.desugarJdkLibs)
 
     // AndroidX
-    implementation("androidx.core:core-ktx:$vAndroidX")
-    implementation("androidx.activity:activity-compose:$vActivity")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$vLifecycle")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:$vLifecycle")
-    implementation("androidx.navigation:navigation-compose:$vNavigation")
+    implementation(libs.androidx.coreKtx)
+    implementation(libs.androidx.activityCompose)
+    implementation(libs.androidx.lifecycleRuntimeKtx)
+    implementation(libs.androidx.lifecycleRuntimeCompose)
+    implementation(libs.androidx.navigationCompose)
 
     // Compose
-    val composeBom = platform("androidx.compose:compose-bom:$vComposeBom")
-    implementation(composeBom)
-    androidTestImplementation(composeBom)
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.material3:material3")
+    implementation(platform(libs.androidx.composeBom))
+    androidTestImplementation(platform(libs.androidx.composeBom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.material3)
 
     // Compose Preview
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation(libs.androidx.uiToolingPreview)
+    debugImplementation(libs.androidx.uiTooling)
 
     // Koin DI
-    implementation("io.insert-koin:koin-android:$vKoin")
-    implementation("io.insert-koin:koin-androidx-compose:$vKoinCompose")
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidxCompose)
 
     // Room
-    implementation("androidx.room:room-runtime:$vRoom")
-    implementation("androidx.room:room-ktx:$vRoom")
-    annotationProcessor("androidx.room:room-compiler:$vRoom")
-    ksp("androidx.room:room-compiler:$vRoom")
+    implementation(libs.androidx.roomRuntime)
+    implementation(libs.androidx.roomKtx)
+    annotationProcessor(libs.androidx.roomCompiler)
+    ksp(libs.androidx.roomCompiler)
 
     // Ktor
-    implementation("io.ktor:ktor-client-android:$vKtor")
-    implementation("io.ktor:ktor-client-content-negotiation:$vKtor")
-    implementation("io.ktor:ktor-client-serialization:$vKtor")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:$vKtor")
-    implementation("io.ktor:ktor-client-logging:$vKtor")
-    implementation("org.slf4j:slf4j-simple:$vSlf4j")
+    implementation(libs.ktor.clientAndroid)
+    implementation(libs.ktor.clientContentNegotiation)
+    implementation(libs.ktor.clientSerialization)
+    implementation(libs.ktor.serializationKotlinxJson)
+    implementation(libs.ktor.clientLogging)
+    implementation(libs.slf4j.simple)
 
     // Coil
-    implementation("io.coil-kt:coil-compose:$vCoil")
+    implementation(libs.coil.compose)
 
     // Kotlin Serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$vKotlinSerialization")
+    implementation(libs.jetbrains.kotlinxSerializationJson)
 
     // Kotlin Date/Time
-    implementation("org.jetbrains.kotlinx:kotlinx-datetime:$vKotlinxDateTime")
+    implementation(libs.jetbrains.kotlinxDatetime)
 
     // Timber
-    implementation("com.jakewharton.timber:timber:$vTimber")
+    implementation(libs.jakewharton.timber)
 
     // Unit Tests
-    testImplementation("junit:junit:$vJunit")
-    androidTestImplementation("androidx.test.ext:junit:$vJunitExt")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
 
     // UI Tests
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-    androidTestImplementation("androidx.test.espresso:espresso-core:$vEspresso")
+    androidTestImplementation(libs.androidx.uiTestJunit4)
+    debugImplementation(libs.androidx.uiTestManifest)
+    androidTestImplementation(libs.androidx.espressoCore)
 }
