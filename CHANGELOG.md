@@ -1,5 +1,87 @@
 # Changelog
 
+## [1.3.0](https://github.com/digrec/kuna/compare/v1.2.0...v1.3.0) (2024-10-03)
+
+
+### Features
+
+* add obverse and reverse images to Kuna model ([f20149c](https://github.com/digrec/kuna/commit/f20149cf3889f618211b5860aa5055a88758dd2c))
+* load obverse Kuna image using Coil ([2cdf1e6](https://github.com/digrec/kuna/commit/2cdf1e6bd35ae83bef011d279d5e9cca8bf5e47c))
+* persist fetched Kuna list and make it offline-first ([42c03c9](https://github.com/digrec/kuna/commit/42c03c95cb41a827649fa7724acb458a25d6f75c))
+
+
+### Documentation
+
+* **readme:** update app screenshot ([bf6c0b7](https://github.com/digrec/kuna/commit/bf6c0b723999ef5423bec38ec97433a0a1349e9a))
+
+
+### Chores
+
+* **deps:** migrate Kotlin to v2.0.0 ([f544fe8](https://github.com/digrec/kuna/commit/f544fe8487b47665f783279e762dc727991d2200))
+* **deps:** update Activity to v1.8.0 ([f7a9ae0](https://github.com/digrec/kuna/commit/f7a9ae0dc56a68dcaaf62a610a7af6810cd70baa))
+* **deps:** update Activity to v1.8.1 ([a79d73e](https://github.com/digrec/kuna/commit/a79d73edb2848a13e0795ff6786e5dc4c43a41f8))
+* **deps:** update Activity to v1.8.2 ([b995dc8](https://github.com/digrec/kuna/commit/b995dc87270f988dc565bb83ede6c1ca20dae7cb))
+* **deps:** update AGP to v8.1.3 ([7dda2f6](https://github.com/digrec/kuna/commit/7dda2f645de8d7fe1126f311547af8d119af495b))
+* **deps:** update AGP to v8.1.4 ([211b0a9](https://github.com/digrec/kuna/commit/211b0a9f72b9097e72353158826df54344204666))
+* **deps:** update AGP to v8.6 ([a91c0e2](https://github.com/digrec/kuna/commit/a91c0e250153f8273fe3fe852c7f8f41697dbaae))
+* **deps:** update AndroidX to v1.13.1, Activity to v1.9.1 and Lifecycle to v2.8.4 ([a76a797](https://github.com/digrec/kuna/commit/a76a797a43b38fb82791ade176d50ba194097489))
+* **deps:** update Coil to v2.5 ([808049a](https://github.com/digrec/kuna/commit/808049ab5b020be4505d6608e675d039db7f582b))
+* **deps:** update Coil to v2.6 ([1b5436b](https://github.com/digrec/kuna/commit/1b5436bac764bd4c612c7717fcc1e8cde718210f))
+* **deps:** update Coil to v2.7 ([5e9f2dc](https://github.com/digrec/kuna/commit/5e9f2dc497d72b5058554e898c6eeae8796a2464))
+* **deps:** update Compose to v2023.10.00 ([585449a](https://github.com/digrec/kuna/commit/585449ac3ff6af17ddce8ddc5a86d67828ef1295))
+* **deps:** update Compose to v2023.10.01 ([1fd9d39](https://github.com/digrec/kuna/commit/1fd9d39d1a77ea3c7e0500448eec6c99a827b7dc))
+* **deps:** update Compose to v2024.02.02 ([fbfa1ba](https://github.com/digrec/kuna/commit/fbfa1ba2d60bec897c407c451709541bb1702d7d))
+* **deps:** update Compose to v2024.06.00 ([2bca880](https://github.com/digrec/kuna/commit/2bca8803a0272035704b3f2ccd0d57bc9c05fda8))
+* **deps:** update Compose to v2024.08.00 ([99bacfb](https://github.com/digrec/kuna/commit/99bacfba7d11f3b1ae88e41eb6da9a0ce451887c))
+* **deps:** update DateTime to v0.5 ([457fd8b](https://github.com/digrec/kuna/commit/457fd8b5f558cbe67e82b31f3c93effed2f4ce92))
+* **deps:** update DateTime to v0.6 ([9fe1a64](https://github.com/digrec/kuna/commit/9fe1a645f5a2167b122b2a810e80c9d11a8971bc))
+* **deps:** update DateTime to v0.6.1 ([6e63dc3](https://github.com/digrec/kuna/commit/6e63dc3e2c4b763377f96c99c8612458438164bc))
+* **deps:** update DesugarJdk to v2.0.4 ([3c2a19e](https://github.com/digrec/kuna/commit/3c2a19e865e47fd6623481fb5cc417f6cba8c948))
+* **deps:** update DesugarJdk to v2.1.2 ([5b49338](https://github.com/digrec/kuna/commit/5b49338006d4ec4043db6ccee771d07b7dd9badb))
+* **deps:** update Espresso to v3.6.1 adn JUnit to v1.2.1 ([408a3f7](https://github.com/digrec/kuna/commit/408a3f7991465724e8025f9456ac8b1c41db0297))
+* **deps:** update Gradle to v8.2 and AGP to v8.2 ([cf96fa1](https://github.com/digrec/kuna/commit/cf96fa17efdcac070077bf0a420007e76daba3af))
+* **deps:** update Gradle to v8.4 and AGP to v8.3 ([817edd6](https://github.com/digrec/kuna/commit/817edd6581e848159f326906d71ad56ff2ae897f))
+* **deps:** update Gradle to v8.6 and AGP to v8.4 ([8e0cc63](https://github.com/digrec/kuna/commit/8e0cc63b2c024b6ef8fe5e7b14348b39b6875a75))
+* **deps:** update Gradle to v8.7 and AGP to v8.5.1 ([fd82c23](https://github.com/digrec/kuna/commit/fd82c2329c14037f5c250b345cf5778e7c92ccf9))
+* **deps:** update Gradle to v8.9 and AGP to v8.7 ([889ad1c](https://github.com/digrec/kuna/commit/889ad1c5228ebb4ff51b689b1929b96e0d0f232e))
+* **deps:** update Koin to v3.5.3 ([888fbf5](https://github.com/digrec/kuna/commit/888fbf5fb55504e453fbf6ceb29818a6afed5900))
+* **deps:** update Koin to v3.5.6 ([fee4931](https://github.com/digrec/kuna/commit/fee4931ee96ff066a03f7d7d905d980133aafab5))
+* **deps:** update Kotlin to v.1.9.10 and Compose Compiler to v1.5.3 ([e88648e](https://github.com/digrec/kuna/commit/e88648e85e759bc4dad36e924cd6ec8edcc5aaf3))
+* **deps:** update Kotlin to v.1.9.22 and Compose Compiler to v1.5.8 ([fd94998](https://github.com/digrec/kuna/commit/fd94998fc826d8670cfc0251b8943d532e4ed44a))
+* **deps:** update Kotlin to v.1.9.24, KSP to v1.9.24-1.0.20 and Compose Compiler to v1.5.14 ([7d42d90](https://github.com/digrec/kuna/commit/7d42d903bb0e0a55c65bbbc6a19a4009e447d33b))
+* **deps:** update Kotlin to v2.0.20 ([9f550f0](https://github.com/digrec/kuna/commit/9f550f0202213fc041a72e6bd311cfb68d76ea04))
+* **deps:** update KotlinSerialization to v1.6.1 ([fc6a40b](https://github.com/digrec/kuna/commit/fc6a40b8f637272fe8bcd85a598079086cde94f9))
+* **deps:** update KotlinSerialization to v1.6.2 ([25f202b](https://github.com/digrec/kuna/commit/25f202b40c3f2b4a659bc01d85bd6dbf09c23f0d))
+* **deps:** update KotlinSerialization to v1.6.3 ([b83d14d](https://github.com/digrec/kuna/commit/b83d14de031440070a02aebfd1b9d83899606064))
+* **deps:** update KotlinSerialization to v1.7.2 ([bc5af1e](https://github.com/digrec/kuna/commit/bc5af1e8fff880de3679d50379b46db1daee4ea5))
+* **deps:** update Ktor to v2.3.12 ([ba5406d](https://github.com/digrec/kuna/commit/ba5406da7d2510a0bc9f08fd9da5548dc771ee0c))
+* **deps:** update Ktor to v2.3.5 ([bfa3eec](https://github.com/digrec/kuna/commit/bfa3eec5204dcb3b0e650b098274422d1a646d89))
+* **deps:** update Ktor to v2.3.6 ([1421c75](https://github.com/digrec/kuna/commit/1421c7540da2ba12d92c66ed50b123fc5b1fd3de))
+* **deps:** update Ktor to v2.3.7 ([09159a8](https://github.com/digrec/kuna/commit/09159a805b47e0353d85432590e87ea7fd357bc8))
+* **deps:** update Ktor to v2.3.9 ([d89f924](https://github.com/digrec/kuna/commit/d89f92458b771846d47af3f3444ed9eb0c781267))
+* **deps:** update Lifecycle to v2.7 Navigation to v2.7.7 ([8548373](https://github.com/digrec/kuna/commit/854837372f68b567331bdcb9518f6836a303adc5))
+* **deps:** update Navigation to v2.7.4 ([8d08d76](https://github.com/digrec/kuna/commit/8d08d76841801a826e5e7fe4eb33ab08286b8d29))
+* **deps:** update Navigation to v2.7.5 ([207a89e](https://github.com/digrec/kuna/commit/207a89e911412c9ba2966471e57e082fc9ecd60b))
+* **deps:** update Navigation to v2.7.6 ([6b7e86e](https://github.com/digrec/kuna/commit/6b7e86e91c6c986ec017ba5d471aff09c9b89166))
+* **deps:** update Navigation to v2.8.2 ([ee4690c](https://github.com/digrec/kuna/commit/ee4690cdb30a015327181ca46446c05df35d0cc3))
+* **deps:** update SLF4J to v2.0.10 ([e579736](https://github.com/digrec/kuna/commit/e579736ca1c61582c0bae43e2829e6cb6c08fb7a))
+* **deps:** update SLF4J to v2.0.12 ([b8a5f05](https://github.com/digrec/kuna/commit/b8a5f0564459209892ef7b9295fb2dceaadb9e88))
+* **deps:** update Slf4j to v2.0.13 ([2e5e1c7](https://github.com/digrec/kuna/commit/2e5e1c7440bce87c73e6f485d39dffb5cede6409))
+* **deps:** update Slf4j to v2.0.16 ([66819fc](https://github.com/digrec/kuna/commit/66819fce12a8fa96379b2bbe5fb22687c3fbaaa1))
+* remove unused Kuna property ([67cef92](https://github.com/digrec/kuna/commit/67cef922e9865ca3f4c9908eeb427b98f3b981c7))
+
+
+### Refactors
+
+* change Kuna id from string to integer ([2c75c2c](https://github.com/digrec/kuna/commit/2c75c2c581fcef7e43805f52801e4869184cfbbc))
+* move network data source code to network package ([8270a16](https://github.com/digrec/kuna/commit/8270a16c7cbdb879b016cbdd309231ff1fc92577))
+
+
+### Build System
+
+* exclude META-INF/versions/9/previous-compilation-data.bin ([5f21639](https://github.com/digrec/kuna/commit/5f21639632390cbded6310bd151449df4bd67c99))
+* migrate build to Gradle Version Catalog ([64676c6](https://github.com/digrec/kuna/commit/64676c6ef5c52818780a528a07239889da0a6c78))
+
 ## [1.2.0](https://github.com/digrec/kuna/compare/v1.1.0...v1.2.0) (2023-09-30)
 
 
