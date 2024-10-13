@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.digrec.kuna.core.domain.GetAllKunaUseCase
 import com.digrec.kuna.core.domain.RefreshAllKunaUseCase
 import com.digrec.kuna.core.domain.result.Result
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -42,6 +43,7 @@ class KunaListViewModel(
                 }
 
                 is Result.Error -> {
+                    delay(300) // saves previous RefreshState.Refreshing emission from conflation
                     _refreshState.emit(RefreshState.Error(refreshResult.exception))
                 }
             }

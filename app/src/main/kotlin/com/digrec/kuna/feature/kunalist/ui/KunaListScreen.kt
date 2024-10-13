@@ -28,15 +28,13 @@ import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.pulltorefresh.PullToRefreshContainer
-import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -110,7 +108,7 @@ internal fun KunaListScreen(
                         overflow = TextOverflow.Ellipsis,
                     )
                 },
-                colors = TopAppBarDefaults.smallTopAppBarColors(
+                colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = MaterialTheme.colorScheme.onPrimary,
                 ),
@@ -179,24 +177,16 @@ private fun KunaGrid(
     removeFromCollection: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val pullToRefreshState = rememberPullToRefreshState()
-    if (pullToRefreshState.isRefreshing
-        && (refreshState is RefreshState.NotRefreshing || refreshState is RefreshState.Error)
-    ) {
-        refresh()
-    }
-
+    val scrollableState = rememberLazyGridState()
     if (refreshState is RefreshState.Success) {
-        pullToRefreshState.endRefresh()
         refreshed()
     }
 
-    if (refreshState is RefreshState.Error) {
-        pullToRefreshState.endRefresh()
-    }
-
-    val scrollableState = rememberLazyGridState()
-    Box(modifier = modifier.nestedScroll(pullToRefreshState.nestedScrollConnection)) {
+    PullToRefreshBox(
+        isRefreshing = refreshState is RefreshState.Refreshing,
+        onRefresh = refresh,
+        modifier = modifier.fillMaxSize(),
+    ) {
         LazyVerticalGrid(
             columns = GridCells.Adaptive(300.dp),
             contentPadding = PaddingValues(16.dp),
@@ -213,10 +203,6 @@ private fun KunaGrid(
                 Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.safeDrawing))
             }
         }
-        PullToRefreshContainer(
-            modifier = Modifier.align(Alignment.TopCenter),
-            state = pullToRefreshState,
-        )
     }
 }
 
