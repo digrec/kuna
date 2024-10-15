@@ -45,7 +45,7 @@ import com.digrec.kuna.core.domain.model.Kuna
 import com.digrec.kuna.core.domain.model.previewKunaList
 import com.digrec.kuna.core.ui.theme.KunaTheme
 import com.digrec.kuna.feature.kunalist.ui.component.kunaList
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 
 sealed interface RefreshState {
     data object NotRefreshing : RefreshState
@@ -68,7 +68,7 @@ sealed interface ListUiState {
 @Composable
 fun KunaListRoute(
     modifier: Modifier = Modifier,
-    viewModel: KunaListViewModel = getViewModel(),
+    viewModel: KunaListViewModel = koinViewModel(),
     onClickSettings: () -> Unit,
 ) {
     val refreshState: RefreshState by viewModel.refreshState.collectAsStateWithLifecycle()

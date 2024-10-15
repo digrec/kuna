@@ -95,6 +95,7 @@ dependencies {
     debugImplementation(libs.androidx.uiTooling)
 
     // Koin DI
+    implementation(platform(libs.koin.bom))
     implementation(libs.koin.android)
     implementation(libs.koin.androidxCompose)
 
