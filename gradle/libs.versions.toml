@@ -34,16 +34,16 @@ androidx-espressoCore = { group = "androidx.test.espresso", name = "espresso-cor
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitExt" }
 androidx-lifecycleRuntimeKtx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
 androidx-lifecycleRuntimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
-androidx-material3 = { module = "androidx.compose.material3:material3" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-navigationCompose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 androidx-roomCompiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 androidx-roomKtx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 androidx-roomRuntime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
-androidx-ui = { module = "androidx.compose.ui:ui" }
-androidx-uiTestJunit4 = { module = "androidx.compose.ui:ui-test-junit4" }
-androidx-uiTestManifest = { module = "androidx.compose.ui:ui-test-manifest" }
-androidx-uiTooling = { module = "androidx.compose.ui:ui-tooling" }
-androidx-uiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-uiTestJunit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-uiTestManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-uiTooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-uiToolingPreview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 jakewharton-timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 jetbrains-kotlinxDatetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDateTime" }
