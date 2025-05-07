@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.3.0](https://github.com/digrec/kuna/compare/v1.2.0...v1.3.0) (2025-05-07)
+
+
+### Features
+
+* add obverse and reverse images to Kuna model ([f20149c](https://github.com/digrec/kuna/commit/f20149cf3889f618211b5860aa5055a88758dd2c))
+* load obverse Kuna image using Coil ([2cdf1e6](https://github.com/digrec/kuna/commit/2cdf1e6bd35ae83bef011d279d5e9cca8bf5e47c))
+* persist fetched Kuna list and make it offline-first ([42c03c9](https://github.com/digrec/kuna/commit/42c03c95cb41a827649fa7724acb458a25d6f75c))
+* target Android 15 (API 35) ([4eca016](https://github.com/digrec/kuna/commit/4eca0160da2438f3f1d7e196d4375565d321092d))
+
+
+### Bug Fixes
+
+* replace deprecated window inset API ([224c079](https://github.com/digrec/kuna/commit/224c07928c3a7eab6c7bfcb93806a533973a2f8e))
+
 ## [1.2.0](https://github.com/digrec/kuna/compare/v1.1.0...v1.2.0) (2023-09-30)
 
 
