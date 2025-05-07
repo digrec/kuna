@@ -2,7 +2,6 @@ package com.digrec.kuna.core.data.database.util
 
 import androidx.room.TypeConverter
 import kotlinx.datetime.LocalDate
-import kotlinx.datetime.toLocalDate
 
 
 /**
@@ -12,7 +11,7 @@ class LocalDateConverter {
 
     @TypeConverter
     fun stringToLocalDate(value: String?): LocalDate? =
-        value?.toLocalDate()
+        value?.let { LocalDate.parse(it) }
 
     @TypeConverter
     fun localDateToString(date: LocalDate?): String? =
