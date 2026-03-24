@@ -1,8 +1,5 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.jetbrains.kotlin.compose)
     alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.google.devtools.ksp)
@@ -32,11 +29,6 @@ android {
         }
     }
 
-    sourceSets {
-        named("main") { java.srcDir("src/main/kotlin") }
-        named("test") { java.srcDir("src/test/kotlin") }
-        named("androidTest") { java.srcDir("src/androidTest/kotlin") }
-    }
     buildTypes {
         debug {
             versionNameSuffix = "-debug"
@@ -56,13 +48,8 @@ android {
     }
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
-        }
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     packaging {
         resources {
@@ -70,6 +57,11 @@ android {
             excludes += "/META-INF/versions/9/previous-compilation-data.bin"
         }
     }
+}
+
+kotlin {
+    // Enforces JDK for both Kotlin and Java compilation
+    jvmToolchain(jdkVersion = 17)
 }
 
 dependencies {
