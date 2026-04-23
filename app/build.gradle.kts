@@ -59,6 +59,10 @@ android {
     }
 }
 
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+}
+
 kotlin {
     // Enforces JDK for both Kotlin and Java compilation
     jvmToolchain(jdkVersion = 17)
