@@ -81,6 +81,7 @@ dependencies {
     androidTestImplementation(platform(libs.androidx.composeBom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.materialIconsCore)
 
     // Compose Preview
     implementation(libs.androidx.uiToolingPreview)

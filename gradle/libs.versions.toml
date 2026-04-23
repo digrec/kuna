@@ -10,7 +10,7 @@ ksp = "2.3.5"
 activityCompose = "1.13.0"
 coreKtx = "1.18.0"
 coil = "2.7.0"
-composeBom = "2025.05.01"
+composeBom = "2026.04.01"
 desugarJdk = "2.1.5"
 espresso = "3.7.0"
 junit = "4.13.2"
@@ -35,6 +35,7 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "j
 androidx-lifecycleRuntimeKtx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
 androidx-lifecycleRuntimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-materialIconsCore = { group = "androidx.compose.material", name = "material-icons-core" }
 androidx-navigationCompose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 androidx-roomCompiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 androidx-roomKtx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
