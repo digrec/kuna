@@ -12,7 +12,6 @@ import com.digrec.kuna.feature.kunalist.kunaListRoute
 import com.digrec.kuna.feature.kunalist.kunaListScreen
 import com.digrec.kuna.feature.settings.navigateToSettings
 import com.digrec.kuna.feature.settings.settingsScreen
-import org.koin.androidx.compose.KoinAndroidContext
 
 
 /**
@@ -22,22 +21,20 @@ import org.koin.androidx.compose.KoinAndroidContext
  */
 @Composable
 fun KunaApp() {
-    KoinAndroidContext {
-        KunaTheme {
-            val navController = rememberNavController()
+    KunaTheme {
+        val navController = rememberNavController()
 
-            KunaBackground(modifier = Modifier.fillMaxSize()) {
-                NavHost(
-                    navController = navController,
-                    startDestination = kunaListRoute,
-                ) {
-                    kunaListScreen(
-                        onClickSettings = { navController.navigateToSettings() },
-                    )
-                    settingsScreen(
-                        onClickBack = { navController.navigateUp() },
-                    )
-                }
+        KunaBackground(modifier = Modifier.fillMaxSize()) {
+            NavHost(
+                navController = navController,
+                startDestination = kunaListRoute,
+            ) {
+                kunaListScreen(
+                    onClickSettings = { navController.navigateToSettings() },
+                )
+                settingsScreen(
+                    onClickBack = { navController.navigateUp() },
+                )
             }
         }
     }
