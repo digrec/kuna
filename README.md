@@ -10,7 +10,35 @@ Source: [HNB](https://www.hnb.hr/en/currency/kuna/coins/commemorative-coins-in-c
 
 Modern Android application built with Jetpack Compose.
 
-## GitHub Release
+## 🛠️ Tech Stack & Libraries
+
+- **UI:** Jetpack Compose (Material 3)
+- **Dependency Injection:** Koin (BOM-based)
+- **Database:** Room (using KSP for compilation)
+- **Networking:** Ktor Client (Android engine + Kotlinx Serialization)
+- **Async/Threading:** Kotlin Coroutines & Flow
+- **Image Loading:** Coil
+- **Logging:** Timber
+
+## 📐 Architecture
+
+The project is built following **Clean Architecture** and MVVM design patterns:
+- **`core/`**: Shared components including database, repository interfaces, domain models, and global UI styling.
+- **`feature/`**: Package-by-feature directories containing UI screens, ViewModels, and feature-specific logic (e.g., `kunalist`, `settings`).
+
+## 🚀 Getting Started
+
+### Prerequisites
+- **JDK 17** (configured via Gradle toolchain)
+- **Android Studio** (Koala or newer recommended)
+
+### Build Commands
+Run these commands from the root directory:
+- **Build the debug app:** `./gradlew assembleDebug`
+- **Run local unit tests:** `./gradlew test`
+- **Clean build artifacts:** `./gradlew clean`
+
+## 📦 GitHub Release
 
 Release Please GitHub Action maintains Release PRs on each push to the main branch.
 
