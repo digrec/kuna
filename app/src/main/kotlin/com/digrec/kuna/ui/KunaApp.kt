@@ -13,7 +13,6 @@ import com.digrec.kuna.feature.kunalist.kunaListScreen
 import com.digrec.kuna.feature.settings.navigateToSettings
 import com.digrec.kuna.feature.settings.settingsScreen
 
-
 /**
  * The 25 Kuna app.
  *
@@ -25,16 +24,9 @@ fun KunaApp() {
         val navController = rememberNavController()
 
         KunaBackground(modifier = Modifier.fillMaxSize()) {
-            NavHost(
-                navController = navController,
-                startDestination = kunaListRoute,
-            ) {
-                kunaListScreen(
-                    onClickSettings = { navController.navigateToSettings() },
-                )
-                settingsScreen(
-                    onClickBack = { navController.navigateUp() },
-                )
+            NavHost(navController = navController, startDestination = kunaListRoute) {
+                kunaListScreen(onClickSettings = { navController.navigateToSettings() })
+                settingsScreen(onClickBack = { navController.navigateUp() })
             }
         }
     }

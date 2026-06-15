@@ -22,7 +22,6 @@ import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 import timber.log.Timber
 
-
 /**
  * All modules used in dependency injection.
  *
@@ -30,47 +29,35 @@ import timber.log.Timber
  */
 object Modules {
 
-    val appModule = module {
-
-    }
+    val appModule = module {}
 
     val repositoryModule = module {
         single {
             HttpClient(Android) {
                 install(Logging) {
-                    logger = object : Logger {
-                        override fun log(message: String) {
-                            if (BuildConfig.DEBUG) Timber.d(message) else Timber.i(message)
+                    logger =
+                        object : Logger {
+                            override fun log(message: String) {
+                                if (BuildConfig.DEBUG) Timber.d(message) else Timber.i(message)
+                            }
                         }
-                    }
                     level = if (BuildConfig.DEBUG) LogLevel.BODY else LogLevel.INFO
                 }
                 expectSuccess = true
-                install(ContentNegotiation) {
-                    json()
-                }
-                defaultRequest {
-                    url(KunaRepository.API_BASE_URL)
-                }
+                install(ContentNegotiation) { json() }
+                defaultRequest { url(KunaRepository.API_BASE_URL) }
             }
         }
         single {
             Room.databaseBuilder(
-                context = androidContext(),
-                klass = KunaDatabase::class.java,
-                name = KunaDatabase.DB_FILE_NAME,
-            ).build()
+                    context = androidContext(),
+                    klass = KunaDatabase::class.java,
+                    name = KunaDatabase.DB_FILE_NAME,
+                )
+                .build()
         }
-        factory {
-            get<KunaDatabase>()
-                .kunaDao()
-        }
-        single<KunaRepository> {
-            KunaRepositoryImpl(
-                dao = get(),
-                httpClient = get(),
-            )
-        }
+        factory { get<KunaDatabase>().kunaDao() }
+        single<KunaRepository> { KunaRepositoryImpl(dao = get(), httpClient = get()) }
     }
 
     val useCaseModule = module {
@@ -80,8 +67,6 @@ object Modules {
 
     val viewModelModule = module {
         viewModel { KunaListViewModel(getAllKuna = get(), refreshAllKuna = get()) }
-        viewModel {
-            SettingsViewModel(BuildConfig.VERSION_CODE, BuildConfig.VERSION_NAME)
-        }
+        viewModel { SettingsViewModel(BuildConfig.VERSION_CODE, BuildConfig.VERSION_NAME) }
     }
 }

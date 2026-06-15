@@ -10,6 +10,8 @@ This file contains guidelines, constraints, and instructions for AI agents worki
 - **CLI Commands:**
   - Build project: `./gradlew assembleDebug`
   - Run unit tests: `./gradlew test`
+  - Format Kotlin code: `./gradlew ktfmtFormat`
+  - Check Kotlin formatting: `./gradlew ktfmtCheck`
   - Clean project: `./gradlew clean`
 - For general project overview, see the [README.md](README.md).
 
@@ -85,3 +87,4 @@ Agents must automatically write unit tests and maintain high test coverage for a
 - **No Unauthorized Changes:** Do not make architectural changes or upgrade compiler/library/SDK versions without a verified technical reason and explicit developer approval.
 - **Error Recovery:** If a build fails or tests fail, clearly explain the error, your hypothesis, and your proposed fix before proceeding.
 - **Incremental Work:** Work in small, logical steps. Verify each step compiles and passes tests before moving to the next.
+- **Code Formatting:** Run `./gradlew ktfmtFormat` to format all Kotlin files and script files before submitting code. Ensure your changes compile and pass `./gradlew ktfmtCheck`.

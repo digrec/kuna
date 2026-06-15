@@ -11,10 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-
-/**
- * Created by Dejan Igrec
- */
+/** Created by Dejan Igrec */
 class KunaListViewModel(
     val getAllKuna: GetAllKunaUseCase,
     val refreshAllKuna: RefreshAllKunaUseCase,
@@ -30,9 +27,7 @@ class KunaListViewModel(
         load()
     }
 
-    /**
-     * Called from pull-to-refresh UI action.
-     */
+    /** Called from pull-to-refresh UI action. */
     fun refresh() {
         _refreshState.value = RefreshState.Refreshing
 
@@ -53,9 +48,7 @@ class KunaListViewModel(
     }
 
     fun refreshed() {
-        viewModelScope.launch {
-            _refreshState.emit(RefreshState.NotRefreshing)
-        }
+        viewModelScope.launch { _refreshState.emit(RefreshState.NotRefreshing) }
     }
 
     private fun load() {
@@ -75,8 +68,6 @@ class KunaListViewModel(
     }
 
     fun removeFromCollection(kunaId: Int) {
-        viewModelScope.launch {
-            Timber.d("removeFromCollection: $kunaId")
-        }
+        viewModelScope.launch { Timber.d("removeFromCollection: $kunaId") }
     }
 }

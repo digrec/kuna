@@ -7,14 +7,8 @@ import com.digrec.kuna.core.data.database.dao.KunaDao
 import com.digrec.kuna.core.data.database.model.KunaEntity
 import com.digrec.kuna.core.data.database.util.LocalDateConverter
 
-
-/**
- * Created by Dejan Igrec
- */
-@Database(
-    entities = [KunaEntity::class],
-    version = 1,
-)
+/** Created by Dejan Igrec */
+@Database(entities = [KunaEntity::class], version = 1)
 @TypeConverters(LocalDateConverter::class)
 abstract class KunaDatabase : RoomDatabase() {
 

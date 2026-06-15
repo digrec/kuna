@@ -24,7 +24,6 @@ import com.digrec.kuna.R
 import com.digrec.kuna.core.ui.theme.KunaTheme
 import org.koin.androidx.compose.koinViewModel
 
-
 @Composable
 fun SettingsRoute(
     modifier: Modifier = Modifier,
@@ -40,16 +39,10 @@ fun SettingsRoute(
     )
 }
 
-/**
- * Created by Dejan Igrec
- */
+/** Created by Dejan Igrec */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun SettingsScreen(
-    modifier: Modifier,
-    appVersion: String,
-    onClickBack: () -> Unit,
-) {
+internal fun SettingsScreen(modifier: Modifier, appVersion: String, onClickBack: () -> Unit) {
     Scaffold(
         modifier = modifier,
         topBar = {
@@ -61,10 +54,11 @@ internal fun SettingsScreen(
                         overflow = TextOverflow.Ellipsis,
                     )
                 },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                ),
+                colors =
+                    TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    ),
                 navigationIcon = {
                     IconButton(onClick = { onClickBack() }) {
                         Icon(
@@ -93,10 +87,6 @@ internal fun SettingsScreen(
 @Composable
 fun SettingsScreenPreview() {
     KunaTheme {
-        SettingsScreen(
-            modifier = Modifier.fillMaxSize(),
-            appVersion = "1.10+22",
-            onClickBack = {},
-        )
+        SettingsScreen(modifier = Modifier.fillMaxSize(), appVersion = "1.10+22", onClickBack = {})
     }
 }

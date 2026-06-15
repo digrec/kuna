@@ -7,8 +7,9 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.serialization) apply false
     alias(libs.plugins.jetbrains.kotlin.compose) apply false
     alias(libs.plugins.google.devtools.ksp) apply false
+    alias(libs.plugins.ktfmt)
 }
 
-tasks.register("clean", Delete::class) {
-    delete(rootProject.layout.buildDirectory)
-}
+ktfmt { kotlinLangStyle() }
+
+tasks.register("clean", Delete::class) { delete(rootProject.layout.buildDirectory) }

@@ -49,8 +49,11 @@ import org.koin.androidx.compose.koinViewModel
 
 sealed interface RefreshState {
     data object NotRefreshing : RefreshState
+
     data object Refreshing : RefreshState
+
     data object Success : RefreshState
+
     data class Error(val exception: Throwable?) : RefreshState
 }
 
@@ -80,13 +83,11 @@ fun KunaListRoute(
         onClickSettings = onClickSettings,
         refresh = viewModel::refresh,
         refreshed = viewModel::refreshed,
-        removeFromCollection = viewModel::removeFromCollection
+        removeFromCollection = viewModel::removeFromCollection,
     )
 }
 
-/**
- * Created by Dejan Igrec
- */
+/** Created by Dejan Igrec */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun KunaListScreen(
@@ -108,10 +109,11 @@ internal fun KunaListScreen(
                         overflow = TextOverflow.Ellipsis,
                     )
                 },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                ),
+                colors =
+                    TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    ),
                 actions = {
                     IconButton(onClick = { onClickSettings() }) {
                         Icon(
@@ -120,7 +122,7 @@ internal fun KunaListScreen(
                             tint = MaterialTheme.colorScheme.onPrimary,
                         )
                     }
-                }
+                },
             )
         },
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
@@ -133,10 +135,11 @@ internal fun KunaListScreen(
                 val snackbarAction = stringResource(R.string.retry)
 
                 LaunchedEffect(refreshState) {
-                    val result = snackbarHostState.showSnackbar(
-                        message = snackbarMessage,
-                        actionLabel = snackbarAction,
-                    )
+                    val result =
+                        snackbarHostState.showSnackbar(
+                            message = snackbarMessage,
+                            actionLabel = snackbarAction,
+                        )
                     if (result == SnackbarResult.ActionPerformed) {
                         refresh()
                     }
@@ -151,14 +154,15 @@ internal fun KunaListScreen(
 
             is ListUiState.Loading -> Unit
 
-            is ListUiState.Success -> KunaGrid(
-                listState = listState,
-                refreshState = refreshState,
-                refresh = refresh,
-                refreshed = refreshed,
-                removeFromCollection = removeFromCollection,
-                modifier = Modifier.padding(padding)
-            )
+            is ListUiState.Success ->
+                KunaGrid(
+                    listState = listState,
+                    refreshState = refreshState,
+                    refresh = refresh,
+                    refreshed = refreshed,
+                    removeFromCollection = removeFromCollection,
+                    modifier = Modifier.padding(padding),
+                )
 
             is ListUiState.Error -> {
                 ErrorState(padding)
@@ -175,7 +179,7 @@ private fun KunaGrid(
     refresh: () -> Unit,
     refreshed: () -> Unit,
     removeFromCollection: (Int) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val scrollableState = rememberLazyGridState()
     if (refreshState is RefreshState.Success) {
@@ -193,7 +197,7 @@ private fun KunaGrid(
             horizontalArrangement = Arrangement.spacedBy(32.dp),
             verticalArrangement = Arrangement.spacedBy(24.dp),
             state = scrollableState,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
         ) {
             kunaList(
                 listState = listState,
@@ -208,16 +212,10 @@ private fun KunaGrid(
 
 @Composable
 private fun ErrorState(padding: PaddingValues) {
-    Box(
-        modifier = Modifier
-            .padding(padding)
-            .fillMaxWidth()
-    ) {
+    Box(modifier = Modifier.padding(padding).fillMaxWidth()) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
+            modifier = Modifier.padding(16.dp).fillMaxWidth(),
         ) {
             Text(text = stringResource(R.string.loading_list_failed))
         }

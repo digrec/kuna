@@ -6,10 +6,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.digrec.kuna.feature.settings.ui.SettingsRoute
 
-
-/**
- * App settings route.
- */
+/** App settings route. */
 const val settingsRoute = "settings_route"
 
 fun NavController.navigateToSettings(
@@ -19,7 +16,5 @@ fun NavController.navigateToSettings(
 }
 
 fun NavGraphBuilder.settingsScreen(onClickBack: () -> Unit) {
-    composable(route = settingsRoute) {
-        SettingsRoute(onClickBack = onClickBack)
-    }
+    composable(route = settingsRoute) { SettingsRoute(onClickBack = onClickBack) }
 }

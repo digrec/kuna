@@ -12,11 +12,8 @@ import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 
-
-class KunaRepositoryImpl(
-    private val dao: KunaDao,
-    private val httpClient: HttpClient,
-) : KunaRepository {
+class KunaRepositoryImpl(private val dao: KunaDao, private val httpClient: HttpClient) :
+    KunaRepository {
 
     override suspend fun getAllKuna(): Result<List<Kuna>> {
         return try {
@@ -35,9 +32,11 @@ class KunaRepositoryImpl(
 
     private suspend fun fetchAllKuna(): Result<List<Kuna>> {
         return try {
-            val kunaList = httpClient.get(KunaRepository.ApiEndpoints.KunaList.url)
-                .body<List<KunaJson>>()
-                .map { it.toKuna() }
+            val kunaList =
+                httpClient
+                    .get(KunaRepository.ApiEndpoints.KunaList.url)
+                    .body<List<KunaJson>>()
+                    .map { it.toKuna() }
 
             Result.Success(kunaList)
         } catch (e: Exception) {

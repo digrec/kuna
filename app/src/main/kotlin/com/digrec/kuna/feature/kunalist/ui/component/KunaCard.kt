@@ -34,11 +34,10 @@ import com.digrec.kuna.core.domain.model.Kuna
 import com.digrec.kuna.core.domain.model.previewKunaList
 import com.digrec.kuna.core.domain.repository.KunaRepository
 import com.digrec.kuna.core.ui.theme.KunaTheme
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.toJavaLocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
-
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.toJavaLocalDate
 
 /**
  * [KunaCard] card used on Kuna list screen.
@@ -66,9 +65,7 @@ fun KunaCard(
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         // Use custom label for accessibility services to communicate button's action to user.
-        modifier = modifier.semantics {
-            onClick(label = clickActionLabel, action = null)
-        }
+        modifier = modifier.semantics { onClick(label = clickActionLabel, action = null) },
     ) {
         Box(modifier = Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -78,25 +75,15 @@ fun KunaCard(
                         contentDescription = "25kn",
                         placeholder = painterResource(id = R.drawable.ic_25_kuna),
                         error = painterResource(id = R.drawable.ic_25_kuna),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(100.dp)
+                        modifier = Modifier.fillMaxWidth().height(100.dp),
                     )
                 }
                 Spacer(modifier = Modifier.width(16.dp))
                 Column {
-                    Row {
-                        KunaTitle(
-                            kuna.title,
-                            modifier = Modifier.fillMaxWidth(),
-                        )
-                    }
+                    Row { KunaTitle(kuna.title, modifier = Modifier.fillMaxWidth()) }
                     Spacer(modifier = Modifier.height(8.dp))
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        KunaReleaseDate(
-                            kuna.releaseDate,
-                            modifier = Modifier.fillMaxWidth(.4f),
-                        )
+                        KunaReleaseDate(kuna.releaseDate, modifier = Modifier.fillMaxWidth(.4f))
                         Spacer(modifier = Modifier.weight(1f))
                         KunaItemsIssued(
                             itemsIssued = kuna.itemsIssued,
@@ -112,10 +99,7 @@ fun KunaCard(
 }
 
 @Composable
-fun KunaTitle(
-    title: String,
-    modifier: Modifier = Modifier,
-) {
+fun KunaTitle(title: String, modifier: Modifier = Modifier) {
     Text(
         text = title,
         style = MaterialTheme.typography.titleMedium,
@@ -126,28 +110,22 @@ fun KunaTitle(
 }
 
 @Composable
-fun Checkmark(
-    isChecked: Boolean,
-    modifier: Modifier = Modifier,
-) {
+fun Checkmark(isChecked: Boolean, modifier: Modifier = Modifier) {
     Icon(
         imageVector = Icons.Filled.Check,
         contentDescription = stringResource(R.string.collected_checkmark),
         modifier = modifier,
-        tint = if (isChecked) {
-            MaterialTheme.colorScheme.primary
-        } else {
-            MaterialTheme.colorScheme.primary.copy(alpha = .3f)
-        },
+        tint =
+            if (isChecked) {
+                MaterialTheme.colorScheme.primary
+            } else {
+                MaterialTheme.colorScheme.primary.copy(alpha = .3f)
+            },
     )
 }
 
 @Composable
-fun CheckmarkButton(
-    isChecked: Boolean,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
+fun CheckmarkButton(isChecked: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
     KunaIconToggleButton(
         checked = isChecked,
         onCheckedChange = { onClick() },
@@ -165,28 +143,23 @@ fun CheckmarkButton(
                 contentDescription = stringResource(R.string.app_settings),
                 tint = MaterialTheme.colorScheme.onPrimary,
             )
-        }
+        },
     )
 }
 
 @Composable
-fun KunaReleaseDate(
-    releaseDate: LocalDate,
-    modifier: Modifier = Modifier,
-) {
+fun KunaReleaseDate(releaseDate: LocalDate, modifier: Modifier = Modifier) {
     Text(
-        text = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
-            .format(releaseDate.toJavaLocalDate()),
+        text =
+            DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
+                .format(releaseDate.toJavaLocalDate()),
         style = MaterialTheme.typography.bodyMedium,
         modifier = modifier,
     )
 }
 
 @Composable
-fun KunaItemsIssued(
-    itemsIssued: Int,
-    modifier: Modifier = Modifier,
-) {
+fun KunaItemsIssued(itemsIssued: Int, modifier: Modifier = Modifier) {
     Text(
         text = NumberFormat.getInstance().format(itemsIssued),
         style = MaterialTheme.typography.bodyMedium,
@@ -198,11 +171,6 @@ fun KunaItemsIssued(
 @Composable
 fun KunaCardPreview() {
     KunaTheme {
-        KunaCard(
-            kuna = previewKunaList[0],
-            isChecked = true,
-            onToggleCheckmark = { },
-            onClick = { },
-        )
+        KunaCard(kuna = previewKunaList[0], isChecked = true, onToggleCheckmark = {}, onClick = {})
     }
 }

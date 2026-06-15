@@ -7,10 +7,7 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import timber.log.Timber
 
-
-/**
- * Created by Dejan Igrec
- */
+/** Created by Dejan Igrec */
 class App : Application() {
 
     override fun onCreate() {

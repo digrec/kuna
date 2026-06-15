@@ -6,10 +6,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.digrec.kuna.feature.kunalist.ui.KunaListRoute
 
-
-/**
- * Main Kuna list route.
- */
+/** Main Kuna list route. */
 const val kunaListRoute = "kuna_list_route"
 
 fun NavController.navigateToKunaList(navOptions: NavOptions? = null) {
@@ -17,7 +14,5 @@ fun NavController.navigateToKunaList(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.kunaListScreen(onClickSettings: () -> Unit) {
-    composable(route = kunaListRoute) {
-        KunaListRoute(onClickSettings = onClickSettings)
-    }
+    composable(route = kunaListRoute) { KunaListRoute(onClickSettings = onClickSettings) }
 }

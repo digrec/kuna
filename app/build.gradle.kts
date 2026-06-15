@@ -3,12 +3,15 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.compose)
     alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.google.devtools.ksp)
+    alias(libs.plugins.ktfmt)
 }
 
+ktfmt { kotlinLangStyle() }
+
 // Semantic version (updated by Release Please)
-val versionMajor = 1    // x-release-please-major
-val versionMinor = 3    // x-release-please-minor
-val versionPatch = 0    // x-release-please-patch
+val versionMajor = 1 // x-release-please-major
+val versionMinor = 3 // x-release-please-minor
+val versionPatch = 0 // x-release-please-patch
 
 android {
     namespace = "com.digrec.kuna"
@@ -24,21 +27,17 @@ android {
         versionName = "$versionMajor.$versionMinor.$versionPatch"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        vectorDrawables { useSupportLibrary = true }
     }
 
     buildTypes {
-        debug {
-            versionNameSuffix = "-debug"
-        }
+        debug { versionNameSuffix = "-debug" }
         release {
             isMinifyEnabled = false
             signingConfig = signingConfigs.getByName("debug")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -59,9 +58,7 @@ android {
     }
 }
 
-ksp {
-    arg("room.schemaLocation", "$projectDir/schemas")
-}
+ksp { arg("room.schemaLocation", "$projectDir/schemas") }
 
 kotlin {
     // Enforces JDK for both Kotlin and Java compilation
@@ -131,3 +128,19 @@ dependencies {
     debugImplementation(libs.androidx.uiTestManifest)
     androidTestImplementation(libs.androidx.espressoCore)
 }
+
+// Custom tasks are required under AGP 9.0+ built-in Kotlin support because the
+// ktfmt-gradle plugin fails to automatically detect and format files in 'src/**/*.kt'.
+val ktfmtFormatKotlin =
+    tasks.register<com.ncorti.ktfmt.gradle.tasks.KtfmtFormatTask>("ktfmtFormatKotlin") {
+        source = project.fileTree(projectDir) { include("src/**/*.kt") }
+    }
+
+val ktfmtCheckKotlin =
+    tasks.register<com.ncorti.ktfmt.gradle.tasks.KtfmtCheckTask>("ktfmtCheckKotlin") {
+        source = project.fileTree(projectDir) { include("src/**/*.kt") }
+    }
+
+tasks.named("ktfmtFormat") { dependsOn(ktfmtFormatKotlin) }
+
+tasks.named("ktfmtCheck") { dependsOn(ktfmtCheckKotlin) }
