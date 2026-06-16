@@ -133,11 +133,13 @@ dependencies {
 // ktfmt-gradle plugin fails to automatically detect and format files in 'src/**/*.kt'.
 val ktfmtFormatKotlin =
     tasks.register<com.ncorti.ktfmt.gradle.tasks.KtfmtFormatTask>("ktfmtFormatKotlin") {
+        description = "Formats Kotlin code using Ktfmt."
         source = project.fileTree(projectDir) { include("src/**/*.kt") }
     }
 
 val ktfmtCheckKotlin =
     tasks.register<com.ncorti.ktfmt.gradle.tasks.KtfmtCheckTask>("ktfmtCheckKotlin") {
+        description = "Checks Kotlin code for formatting compliance using Ktfmt."
         source = project.fileTree(projectDir) { include("src/**/*.kt") }
     }
 

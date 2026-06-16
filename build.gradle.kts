@@ -12,4 +12,7 @@ plugins {
 
 ktfmt { kotlinLangStyle() }
 
-tasks.register("clean", Delete::class) { delete(rootProject.layout.buildDirectory) }
+tasks.register("clean", Delete::class) {
+    description = "Cleans build artifacts"
+    delete(rootProject.layout.buildDirectory)
+}
