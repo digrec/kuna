@@ -35,7 +35,9 @@ The project is built following **Clean Architecture** and MVVM design patterns:
 ### Build Commands
 Run these commands from the root directory:
 - **Build the debug app:** `./gradlew assembleDebug`
+- **Build the optimized release app:** `./gradlew assembleRelease`
 - **Run local unit tests:** `./gradlew test`
+- **Run instrumentation tests on release:** `./gradlew connectedAndroidTest`
 - **Clean build artifacts:** `./gradlew clean`
 
 ## 📦 GitHub Release

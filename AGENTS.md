@@ -5,11 +5,13 @@ This file contains guidelines, constraints, and instructions for AI agents worki
 ## 1. Project Context & Environment
 - **Project Name:** Kuna (Croatian commemorative 25 kuna coins collection app)
 - **Minimum SDK:** 24
-- **Target / Compile SDK:** 36
+- **Target / Compile SDK:** 37
 - **JVM Toolchain:** JDK 17
 - **CLI Commands:**
-  - Build project: `./gradlew assembleDebug`
+  - Build project (debug): `./gradlew assembleDebug`
+  - Build project (release optimized): `./gradlew assembleRelease`
   - Run unit tests: `./gradlew test`
+  - Run instrumentation tests on release build: `./gradlew connectedAndroidTest`
   - Format Kotlin code: `./gradlew ktfmtFormat`
   - Check Kotlin formatting: `./gradlew ktfmtCheck`
   - Clean project: `./gradlew clean`
@@ -75,6 +77,13 @@ Agents must automatically write unit tests and maintain high test coverage for a
 - **Koin Configuration Verification:** Use `koin-test` to write a unit test to verify that Koin modules resolve their dependencies correctly (using `checkModules()` or Koin 4.x's modern `verify()` API). Always maintain a unit test to check dependency bindings (e.g. `ModulesTest`).
 - **Android Context in JVM:** Use **Robolectric** if a local unit test requires Android Context or components (e.g., testing Room database DAOs on JVM) to avoid running them on device.
 - **Test Placement:** Write JVM unit tests inside the `test` source set (mirroring the package structure of `main`).
+
+### R8 / ProGuard Optimization:
+1. **Rule Separation**: 
+    - Use `proguard-rules.pro` ONLY for production-specific rules (Ktor, Room, etc.). 
+    - Use `proguard-android-test.pro` for testing-specific rules (JUnit, AndroidX Test).
+2. **R8 Full Mode**: This project uses R8 Full Mode (default in AGP 8.0+). Rules must be specific (e.g., targeting `@Serializable` classes) rather than broad package keeps to minimize APK size and ensure runtime stability.
+3. **Release Testing**: Always verify changes by running `./gradlew connectedAndroidTest` to ensure R8 hasn't incorrectly stripped critical code.
 
 ## 7. Git & Releases
 - This project uses **Release Please** via GitHub Actions to automate versioning and changelogs.

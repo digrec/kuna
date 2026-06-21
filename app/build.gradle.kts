@@ -27,13 +27,15 @@ android {
         versionName = "$versionMajor.$versionMinor.$versionPatch"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testProguardFiles("proguard-android-test.pro")
         vectorDrawables { useSupportLibrary = true }
     }
 
     buildTypes {
         debug { versionNameSuffix = "-debug" }
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             signingConfig = signingConfigs.getByName("debug")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -41,15 +43,20 @@ android {
             )
         }
     }
+
+    testBuildType = "release"
+
     buildFeatures {
         compose = true
         buildConfig = true
     }
+
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
