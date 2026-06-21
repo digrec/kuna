@@ -33,8 +33,7 @@ android {
     buildTypes {
         debug { versionNameSuffix = "-debug" }
         release {
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isMinifyEnabled = false
             signingConfig = signingConfigs.getByName("debug")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
