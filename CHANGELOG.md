@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.0](https://github.com/digrec/kuna/compare/v1.3.0...v1.4.0) (2026-06-27)
+
+
+### Features
+
+* **build:** enable optimized release build and instrumentation testing ([e35b790](https://github.com/digrec/kuna/commit/e35b790c55eca9f852ba1755f5a35ea7dfd48124))
+
+
+### Bug Fixes
+
+* revert unintended release build configuration changes ([0a60201](https://github.com/digrec/kuna/commit/0a602012709bd1fa634f83f0204c058892bcf693))
+
 ## [1.3.0](https://github.com/digrec/kuna/compare/v1.2.0...v1.3.0) (2025-05-07)
 
 
