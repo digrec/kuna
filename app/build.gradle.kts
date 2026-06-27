@@ -85,8 +85,7 @@ dependencies {
     implementation(libs.androidx.navigationCompose)
 
     // Compose
-    @Suppress("AvoidDuplicateDependencies")
-    implementation(platform(libs.androidx.composeBom))
+    @Suppress("AvoidDuplicateDependencies") implementation(platform(libs.androidx.composeBom))
     @Suppress("AvoidDuplicateDependencies")
     androidTestImplementation(platform(libs.androidx.composeBom))
     implementation(libs.androidx.ui)
