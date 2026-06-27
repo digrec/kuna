@@ -85,7 +85,9 @@ dependencies {
     implementation(libs.androidx.navigationCompose)
 
     // Compose
+    @Suppress("AvoidDuplicateDependencies")
     implementation(platform(libs.androidx.composeBom))
+    @Suppress("AvoidDuplicateDependencies")
     androidTestImplementation(platform(libs.androidx.composeBom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.material3)
@@ -128,6 +130,11 @@ dependencies {
 
     // Unit Tests
     testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.turbine)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.koin.test)
     androidTestImplementation(libs.androidx.junit)
 
     // UI Tests

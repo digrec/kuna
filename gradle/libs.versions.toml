@@ -3,28 +3,31 @@ minSdk = "24"
 targetSdk = "37"
 compileSdk = "37"
 
-agp = "9.2.1"
-kotlin = "2.4.0"
-ksp = "2.3.9"
-ktfmt = "0.26.0"
-
 activityCompose = "1.13.0"
-coreKtx = "1.19.0"
+agp = "9.2.1"
 coil = "2.7.0"
 composeBom = "2026.06.00"
+coreKtx = "1.19.0"
 desugarJdk = "2.1.5"
 espresso = "3.7.0"
 junit = "4.13.2"
 junitExt = "1.3.0"
 koinBom = "4.2.2"
+kotlin = "2.4.0"
 kotlinSerialization = "1.11.0"
+kotlinxCoroutines = "1.11.0"
 kotlinxDateTime = "0.8.0"
-ktor = "3.5.0"
+ksp = "2.3.9"
+ktfmt = "0.26.0"
+ktor = "3.5.1"
 lifecycle = "2.11.0"
+mockk = "1.14.11"
 navigation = "2.9.8"
+robolectric = "4.16.1"
 room = "2.8.4"
 slf4j = "2.0.18"
 timber = "5.0.1"
+turbine = "1.2.1"
 
 [libraries]
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugarJdk" }
@@ -33,8 +36,8 @@ androidx-composeBom = { group = "androidx.compose", name = "compose-bom", versio
 androidx-coreKtx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-espressoCore = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitExt" }
-androidx-lifecycleRuntimeKtx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
 androidx-lifecycleRuntimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
+androidx-lifecycleRuntimeKtx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-materialIconsCore = { group = "androidx.compose.material", name = "material-icons-core" }
 androidx-navigationCompose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
@@ -51,15 +54,20 @@ jakewharton-timber = { group = "com.jakewharton.timber", name = "timber", versio
 jetbrains-kotlinxDatetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDateTime" }
 jetbrains-kotlinxSerializationJson = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinSerialization" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
-koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koinBom" }
 koin-android = { group = "io.insert-koin", name = "koin-android" }
 koin-androidxCompose = { group = "io.insert-koin", name = "koin-androidx-compose" }
+koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koinBom" }
+koin-test = { group = "io.insert-koin", name = "koin-test" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
 ktor-clientAndroid = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
 ktor-clientContentNegotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-clientLogging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
 ktor-clientSerialization = { group = "io.ktor", name = "ktor-client-serialization", version.ref = "ktor" }
 ktor-serializationKotlinxJson = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
 slf4j-simple = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
