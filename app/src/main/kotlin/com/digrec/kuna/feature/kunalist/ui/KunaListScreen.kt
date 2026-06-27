@@ -41,32 +41,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.digrec.kuna.R
-import com.digrec.kuna.core.domain.model.Kuna
-import com.digrec.kuna.core.domain.model.previewKunaList
+import com.digrec.kuna.core.testing.data.KunaTestData
 import com.digrec.kuna.core.ui.theme.KunaTheme
 import com.digrec.kuna.feature.kunalist.ui.component.kunaList
 import org.koin.androidx.compose.koinViewModel
-
-sealed interface RefreshState {
-    data object NotRefreshing : RefreshState
-
-    data object Refreshing : RefreshState
-
-    data object Success : RefreshState
-
-    data class Error(val exception: Throwable?) : RefreshState
-}
-
-sealed interface ListUiState {
-
-    data object NotLoading : ListUiState
-
-    data object Loading : ListUiState
-
-    data class Success(val list: List<Kuna>) : ListUiState
-
-    data class Error(val exception: Throwable? = null) : ListUiState
-}
 
 @Composable
 fun KunaListRoute(
@@ -74,16 +52,14 @@ fun KunaListRoute(
     viewModel: KunaListViewModel = koinViewModel(),
     onClickSettings: () -> Unit,
 ) {
-    val refreshState: RefreshState by viewModel.refreshState.collectAsStateWithLifecycle()
-    val listState: ListUiState by viewModel.listUiState.collectAsStateWithLifecycle()
+    val uiState: KunaListUiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     KunaListScreen(
-        refreshState = refreshState,
-        listState = listState,
+        uiState = uiState,
         onClickSettings = onClickSettings,
-        refresh = viewModel::refresh,
-        refreshed = viewModel::refreshed,
-        removeFromCollection = viewModel::removeFromCollection,
+        onRefresh = viewModel::refresh,
+        onClearRefreshError = viewModel::clearRefreshError,
+        onRemoveFromCollection = viewModel::removeFromCollection,
     )
 }
 
@@ -91,14 +67,31 @@ fun KunaListRoute(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun KunaListScreen(
-    refreshState: RefreshState,
-    listState: ListUiState,
+    uiState: KunaListUiState,
     onClickSettings: () -> Unit,
-    refresh: () -> Unit,
-    refreshed: () -> Unit,
-    removeFromCollection: (Int) -> Unit,
+    onRefresh: () -> Unit,
+    onClearRefreshError: () -> Unit,
+    onRemoveFromCollection: (Int) -> Unit,
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
+
+    if (uiState is KunaListUiState.Success && uiState.refreshError != null) {
+        val snackbarMessage = stringResource(R.string.refresh_list_failed)
+        val snackbarAction = stringResource(R.string.retry)
+
+        LaunchedEffect(uiState.refreshError) {
+            val result =
+                snackbarHostState.showSnackbar(
+                    message = snackbarMessage,
+                    actionLabel = snackbarAction,
+                )
+            if (result == SnackbarResult.ActionPerformed) {
+                onRefresh()
+            }
+            onClearRefreshError()
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -115,7 +108,7 @@ internal fun KunaListScreen(
                         titleContentColor = MaterialTheme.colorScheme.onPrimary,
                     ),
                 actions = {
-                    IconButton(onClick = { onClickSettings() }) {
+                    IconButton(onClick = onClickSettings) {
                         Icon(
                             imageVector = Icons.Filled.Settings,
                             contentDescription = stringResource(R.string.app_settings),
@@ -127,44 +120,18 @@ internal fun KunaListScreen(
         },
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
     ) { padding ->
-        when (refreshState) {
-            is RefreshState.Refreshing -> {}
+        when (uiState) {
+            KunaListUiState.Loading -> Unit
 
-            is RefreshState.Error -> {
-                val snackbarMessage = stringResource(R.string.refresh_list_failed)
-                val snackbarAction = stringResource(R.string.retry)
-
-                LaunchedEffect(refreshState) {
-                    val result =
-                        snackbarHostState.showSnackbar(
-                            message = snackbarMessage,
-                            actionLabel = snackbarAction,
-                        )
-                    if (result == SnackbarResult.ActionPerformed) {
-                        refresh()
-                    }
-                }
-            }
-
-            else -> {}
-        }
-
-        when (listState) {
-            is ListUiState.NotLoading -> Unit
-
-            is ListUiState.Loading -> Unit
-
-            is ListUiState.Success ->
+            is KunaListUiState.Success ->
                 KunaGrid(
-                    listState = listState,
-                    refreshState = refreshState,
-                    refresh = refresh,
-                    refreshed = refreshed,
-                    removeFromCollection = removeFromCollection,
+                    uiState = uiState,
+                    onRefresh = onRefresh,
+                    onRemoveFromCollection = onRemoveFromCollection,
                     modifier = Modifier.padding(padding),
                 )
 
-            is ListUiState.Error -> {
+            is KunaListUiState.Error -> {
                 ErrorState(padding)
             }
         }
@@ -174,21 +141,16 @@ internal fun KunaListScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun KunaGrid(
-    listState: ListUiState,
-    refreshState: RefreshState,
-    refresh: () -> Unit,
-    refreshed: () -> Unit,
-    removeFromCollection: (Int) -> Unit,
+    uiState: KunaListUiState.Success,
+    onRefresh: () -> Unit,
+    onRemoveFromCollection: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val scrollableState = rememberLazyGridState()
-    if (refreshState is RefreshState.Success) {
-        refreshed()
-    }
 
     PullToRefreshBox(
-        isRefreshing = refreshState is RefreshState.Refreshing,
-        onRefresh = refresh,
+        isRefreshing = uiState.isRefreshing,
+        onRefresh = onRefresh,
         modifier = modifier.fillMaxSize(),
     ) {
         LazyVerticalGrid(
@@ -200,8 +162,8 @@ private fun KunaGrid(
             modifier = Modifier.fillMaxSize(),
         ) {
             kunaList(
-                listState = listState,
-                onCoinCheckedChanged = { id, _ -> removeFromCollection(id) },
+                list = uiState.list,
+                onCoinCheckedChanged = { id, _ -> onRemoveFromCollection(id) },
             )
             item(span = { GridItemSpan(maxLineSpan) }) {
                 Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.safeDrawing))
@@ -227,12 +189,11 @@ private fun ErrorState(padding: PaddingValues) {
 fun KunaListScreenLoadingPreview() {
     KunaTheme {
         KunaListScreen(
-            refreshState = RefreshState.NotRefreshing,
-            listState = ListUiState.Loading,
+            uiState = KunaListUiState.Loading,
             onClickSettings = {},
-            refresh = {},
-            refreshed = {},
-            removeFromCollection = {},
+            onRefresh = {},
+            onClearRefreshError = {},
+            onRemoveFromCollection = {},
         )
     }
 }
@@ -242,12 +203,11 @@ fun KunaListScreenLoadingPreview() {
 fun KunaListScreenPreview() {
     KunaTheme {
         KunaListScreen(
-            refreshState = RefreshState.NotRefreshing,
-            listState = ListUiState.Success(previewKunaList),
+            uiState = KunaListUiState.Success(KunaTestData.kunaList),
             onClickSettings = {},
-            refresh = {},
-            refreshed = {},
-            removeFromCollection = {},
+            onRefresh = {},
+            onClearRefreshError = {},
+            onRemoveFromCollection = {},
         )
     }
 }

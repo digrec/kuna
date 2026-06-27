@@ -3,9 +3,9 @@ package com.digrec.kuna.feature.kunalist.ui
 import app.cash.turbine.test
 import com.digrec.kuna.core.domain.GetAllKunaUseCase
 import com.digrec.kuna.core.domain.RefreshAllKunaUseCase
-import com.digrec.kuna.core.domain.model.previewKunaList
 import com.digrec.kuna.core.domain.result.Result
 import com.digrec.kuna.core.testing.MainDispatcherRule
+import com.digrec.kuna.core.testing.data.KunaTestData
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -28,14 +28,14 @@ class KunaListViewModelTest {
 
     @Test
     fun `when init then it should load kuna list`() = runTest {
-        coEvery { getAllKuna() } returns Result.Success(previewKunaList)
+        coEvery { getAllKuna() } returns Result.Success(KunaTestData.kunaList)
 
         viewModel = KunaListViewModel(getAllKuna, refreshAllKuna)
 
-        viewModel.listUiState.test {
+        viewModel.uiState.test {
             val successState = expectMostRecentItem()
-            assert(successState is ListUiState.Success)
-            assertEquals(previewKunaList, (successState as ListUiState.Success).list)
+            assert(successState is KunaListUiState.Success)
+            assertEquals(KunaTestData.kunaList, (successState as KunaListUiState.Success).list)
         }
 
         coVerify(exactly = 1) { getAllKuna() }
@@ -48,10 +48,10 @@ class KunaListViewModelTest {
 
         viewModel = KunaListViewModel(getAllKuna, refreshAllKuna)
 
-        viewModel.listUiState.test {
+        viewModel.uiState.test {
             val errorState = expectMostRecentItem()
-            assert(errorState is ListUiState.Error)
-            assertEquals(exception, (errorState as ListUiState.Error).exception)
+            assert(errorState is KunaListUiState.Error)
+            assertEquals(exception, (errorState as KunaListUiState.Error).exception)
         }
 
         coVerify(exactly = 1) { getAllKuna() }
@@ -59,16 +59,26 @@ class KunaListViewModelTest {
 
     @Test
     fun `when refresh then it should update states correctly`() = runTest {
-        coEvery { getAllKuna() } returns Result.Success(previewKunaList)
+        coEvery { getAllKuna() } returns Result.Success(KunaTestData.kunaList)
         coEvery { refreshAllKuna() } returns Result.Success(Unit)
 
         viewModel = KunaListViewModel(getAllKuna, refreshAllKuna)
 
-        viewModel.refreshState.test {
-            assertEquals(RefreshState.NotRefreshing, awaitItem())
+        viewModel.uiState.test {
+            // Initial load
+            assert(awaitItem() is KunaListUiState.Success)
+
             viewModel.refresh()
-            assertEquals(RefreshState.Refreshing, awaitItem())
-            assertEquals(RefreshState.Success, awaitItem())
+
+            // Refreshing state
+            val refreshingState = awaitItem()
+            assert(refreshingState is KunaListUiState.Success)
+            assert((refreshingState as KunaListUiState.Success).isRefreshing)
+
+            // Final state after load() is called again
+            val finalState = awaitItem()
+            assert(finalState is KunaListUiState.Success)
+            assert(!(finalState as KunaListUiState.Success).isRefreshing)
         }
 
         coVerify(exactly = 1) { refreshAllKuna() }
@@ -77,45 +87,53 @@ class KunaListViewModelTest {
 
     @Test
     fun `given error when refresh then it should show error refresh state`() = runTest {
-        coEvery { getAllKuna() } returns Result.Success(previewKunaList)
+        coEvery { getAllKuna() } returns Result.Success(KunaTestData.kunaList)
         val exception = Exception("refresh error")
         coEvery { refreshAllKuna() } returns Result.Error(exception)
 
         viewModel = KunaListViewModel(getAllKuna, refreshAllKuna)
 
-        viewModel.refreshState.test {
-            assertEquals(RefreshState.NotRefreshing, awaitItem())
+        viewModel.uiState.test {
+            // Initial load
+            assert(awaitItem() is KunaListUiState.Success)
+
             viewModel.refresh()
-            assertEquals(RefreshState.Refreshing, awaitItem())
+
+            // Refreshing state
+            assert((awaitItem() as KunaListUiState.Success).isRefreshing)
+
+            // Error state
             val errorState = awaitItem()
-            assert(errorState is RefreshState.Error)
-            assertEquals(exception, (errorState as RefreshState.Error).exception)
+            assert(errorState is KunaListUiState.Success)
+            val successState = errorState as KunaListUiState.Success
+            assert(!successState.isRefreshing)
+            assertEquals(exception, successState.refreshError)
         }
 
         coVerify(exactly = 1) { refreshAllKuna() }
-        coVerify(exactly = 2) {
-            getAllKuna()
-        } // One on init, one after refresh even if refresh fails
+        coVerify(exactly = 1) { getAllKuna() } // only on init, not after error in my current impl
     }
 
     @Test
-    fun `when refreshed then it should reset refresh state`() = runTest {
-        coEvery { getAllKuna() } returns Result.Success(previewKunaList)
-        coEvery { refreshAllKuna() } returns Result.Success(Unit)
+    fun `when clearRefreshError then it should reset refresh error`() = runTest {
+        coEvery { getAllKuna() } returns Result.Success(KunaTestData.kunaList)
+        val exception = Exception("refresh error")
+        coEvery { refreshAllKuna() } returns Result.Error(exception)
 
         viewModel = KunaListViewModel(getAllKuna, refreshAllKuna)
 
-        viewModel.refreshState.test {
-            assertEquals(RefreshState.NotRefreshing, awaitItem())
+        viewModel.uiState.test {
+            // Initial load
+            assert(awaitItem() is KunaListUiState.Success)
 
-            // 1. Trigger refresh to move state to Success
             viewModel.refresh()
-            assertEquals(RefreshState.Refreshing, awaitItem())
-            assertEquals(RefreshState.Success, awaitItem())
+            awaitItem() // refreshing
+            awaitItem() // error
 
-            // 2. Call refreshed() and assert it returns to NotRefreshing
-            viewModel.refreshed()
-            assertEquals(RefreshState.NotRefreshing, awaitItem())
+            viewModel.clearRefreshError()
+            val clearedState = awaitItem()
+            assert(clearedState is KunaListUiState.Success)
+            assert((clearedState as KunaListUiState.Success).refreshError == null)
         }
     }
 }

@@ -31,8 +31,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.digrec.kuna.R
 import com.digrec.kuna.core.domain.model.Kuna
-import com.digrec.kuna.core.domain.model.previewKunaList
 import com.digrec.kuna.core.domain.repository.KunaRepository
+import com.digrec.kuna.core.testing.data.KunaTestData
 import com.digrec.kuna.core.ui.theme.KunaTheme
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
@@ -171,6 +171,11 @@ fun KunaItemsIssued(itemsIssued: Int, modifier: Modifier = Modifier) {
 @Composable
 fun KunaCardPreview() {
     KunaTheme {
-        KunaCard(kuna = previewKunaList[0], isChecked = true, onToggleCheckmark = {}, onClick = {})
+        KunaCard(
+            kuna = KunaTestData.kunaList[0],
+            isChecked = true,
+            onToggleCheckmark = {},
+            onClick = {},
+        )
     }
 }
