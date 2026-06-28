@@ -2,6 +2,7 @@ package com.digrec.kuna.core.domain.repository
 
 import com.digrec.kuna.core.domain.model.Kuna
 import com.digrec.kuna.core.domain.result.Result
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Repository of all 25 Kuna commemorative coins.
@@ -11,7 +12,7 @@ import com.digrec.kuna.core.domain.result.Result
 interface KunaRepository {
 
     /** Returns all stored 25 Kuna coins. */
-    suspend fun getAllKuna(): Result<List<Kuna>>
+    fun getAllKuna(): Flow<Result<List<Kuna>>>
 
     /** Fetches and stores all 25 Kuna coins. */
     suspend fun refreshAllKuna(): Result<Unit>

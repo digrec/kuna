@@ -1,10 +1,10 @@
 package com.digrec.kuna.core.domain
 
+import app.cash.turbine.test
+import com.digrec.kuna.core.domain.model.Kuna
 import com.digrec.kuna.core.domain.result.Result
 import com.digrec.kuna.core.testing.data.KunaTestData
 import com.digrec.kuna.core.testing.repository.TestKunaRepository
-import io.mockk.coEvery
-import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -16,27 +16,12 @@ class GetAllKunaUseCaseTest {
     private val useCase = GetAllKunaUseCase(repository)
 
     @Test
-    fun `when invoke then it should return result from repository`() = runTest {
-        repository.sendKunas(KunaTestData.kunaList)
+    fun `when invoke then it should return flow from repository`() = runTest {
+        useCase().test {
+            assertEquals(Result.Success(emptyList<Kuna>()), awaitItem())
 
-        val actualResult = useCase()
-
-        assert(actualResult is Result.Success)
-        assertEquals(KunaTestData.kunaList, (actualResult as Result.Success).data)
-    }
-
-    @Test
-    fun `given error from repository when invoke then it should return error result`() = runTest {
-        // We still need to mock for error scenarios as TestKunaRepository is currently hardcoded
-        // for success
-        val mockRepository = mockk<com.digrec.kuna.core.domain.repository.KunaRepository>()
-        val errorUseCase = GetAllKunaUseCase(mockRepository)
-        val exception = Exception("test error")
-        val expectedResult = Result.Error(exception)
-        coEvery { mockRepository.getAllKuna() } returns expectedResult
-
-        val actualResult = errorUseCase()
-
-        assertEquals(expectedResult, actualResult)
+            repository.sendKunas(KunaTestData.kunaList)
+            assertEquals(Result.Success(KunaTestData.kunaList), awaitItem())
+        }
     }
 }

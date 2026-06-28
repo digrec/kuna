@@ -49,6 +49,10 @@ The project follows a Clean Architecture structure:
 2. **Pure Domain Layer:** The `domain/` package must remain pure Kotlin. Do not import Android SDK libraries, Room annotations, Ktor classes, or UI elements.
 3. **No Layer Bypassing:** ViewModels must not directly access database entities, DAOs, or the HttpClient. They must interact only with UseCases or Domain Repositories.
 4. **Custom Result Wrapper:** Always use the project's custom Result wrapper (`com.digrec.kuna.core.domain.result.Result`) for domain and data layer operations, rather than `kotlin.Result`.
+5. **MAD Offline-First:** The project follows the Offline-First pattern. 
+    - Repositories MUST expose data from the local database as a `Flow<Result<T>>`. 
+    - Use the `.toResult()` helper on database flows to catch unexpected errors (e.g., mapping or DB issues) and communicate them as `Result.Error`.
+    - Network operations (`refresh`) should update the database (via `upsert`), allowing the Flow to automatically propagate changes to the UI.
 
 ## 4. UI & State Modeling Preferences
 - **UI State Modeling:**

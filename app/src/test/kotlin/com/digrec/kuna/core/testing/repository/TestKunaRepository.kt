@@ -3,8 +3,10 @@ package com.digrec.kuna.core.testing.repository
 import com.digrec.kuna.core.domain.model.Kuna
 import com.digrec.kuna.core.domain.repository.KunaRepository
 import com.digrec.kuna.core.domain.result.Result
-import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.MutableSharedFlow
+import com.digrec.kuna.core.domain.result.toResult
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 /**
  * A fake [KunaRepository] for unit testing.
@@ -14,11 +16,10 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 class TestKunaRepository : KunaRepository {
 
     /** A flow that emits the current list of [Kuna] objects. */
-    private val kunasFlow =
-        MutableSharedFlow<List<Kuna>>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+    private val kunasFlow = MutableStateFlow<List<Kuna>>(emptyList())
 
-    override suspend fun getAllKuna(): Result<List<Kuna>> {
-        return Result.Success(kunasFlow.replayCache.firstOrNull() ?: emptyList())
+    override fun getAllKuna(): Flow<Result<List<Kuna>>> {
+        return kunasFlow.asStateFlow().toResult()
     }
 
     override suspend fun refreshAllKuna(): Result<Unit> {
@@ -27,6 +28,6 @@ class TestKunaRepository : KunaRepository {
 
     /** A test-only API to send a list of [Kuna] objects to the repository. */
     fun sendKunas(kunas: List<Kuna>) {
-        kunasFlow.tryEmit(kunas)
+        kunasFlow.value = kunas
     }
 }

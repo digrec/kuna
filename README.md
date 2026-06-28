@@ -22,9 +22,12 @@ Modern Android application built with Jetpack Compose.
 
 ## 📐 Architecture
 
-The project is built following **Clean Architecture** and MVVM design patterns:
-- **`core/`**: Shared components including database, repository interfaces, domain models, and global UI styling.
-- **`feature/`**: Package-by-feature directories containing UI screens, ViewModels, and feature-specific logic (e.g., `kunalist`, `settings`).
+The project follows the **MAD Offline-First** architecture using **Kotlin Flows** as the Single Source of Truth:
+- **Offline-First:** All data is served from the local database (Room). The UI remains responsive and functional even without a network connection.
+- **Single Source of Truth:** Repositories expose a reactive `Flow` from the database. Network fetching (`refresh`) simply updates the database, which then automatically propagates changes to the UI.
+- **Clean Architecture & MVVM:**
+    - **`core/`**: Shared components including database, repository interfaces, domain models, and global UI styling.
+    - **`feature/`**: Package-by-feature directories containing UI screens, ViewModels, and feature-specific logic (e.g., `kunalist`, `settings`).
 
 ## 🚀 Getting Started
 
